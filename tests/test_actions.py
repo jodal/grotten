@@ -1,6 +1,7 @@
 import pytest
 
-from grotten.actions import ExitAction, GoAction, next_actions
+from grotten import actions
+from grotten.actions import next_actions
 from grotten.levels import level_1
 from grotten.models import Direction, Game
 
@@ -11,13 +12,13 @@ def game() -> Game:
 
 
 def test_exit_str():
-    action = ExitAction()
+    action = actions.Exit()
 
     assert str(action) == "Exit game"
 
 
 def test_exit_apply(game: Game):
-    action = ExitAction()
+    action = actions.Exit()
     assert game.game_done is False
 
     action.apply(game)
@@ -26,25 +27,25 @@ def test_exit_apply(game: Game):
 
 
 def test_go_str():
-    action = GoAction(direction=Direction.NORTH)
+    action = actions.Go(direction=Direction.NORTH)
 
     assert str(action) == "Go North"
 
 
 def test_go_apply(game: Game):
-    action = GoAction(direction=Direction.WEST)
+    action = actions.Go(direction=Direction.WEST)
     assert game.location == level_1.entrance
 
     action.apply(game)
 
-    assert game.location == level_1.dragon_lair
+    assert game.location == level_1.skeletons
 
 
 def test_next_actions(game: Game):
-    actions = next_actions(game)
+    result = next_actions(game)
 
-    assert actions == [
-        GoAction(direction=Direction.NORTH),
-        GoAction(direction=Direction.WEST),
-        ExitAction(),
+    assert result == [
+        actions.Go(direction=Direction.NORTH),
+        actions.Go(direction=Direction.WEST),
+        actions.Exit(),
     ]

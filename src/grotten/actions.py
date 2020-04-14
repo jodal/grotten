@@ -21,7 +21,16 @@ class Action:
 
 
 @dataclass
-class GoAction(Action):
+class Exit(Action):
+    def __str__(self) -> str:
+        return _("Exit game")
+
+    def apply(self, game: Game) -> None:
+        game.end_game()
+
+
+@dataclass
+class Go(Action):
     direction: Direction
 
     def __str__(self) -> str:
@@ -31,19 +40,13 @@ class GoAction(Action):
         game.location = game.location.neighbors[self.direction]
 
 
-@dataclass
-class ExitAction(Action):
-    def __str__(self) -> str:
-        return _("Exit game")
-
-    def apply(self, game: Game) -> None:
-        game.end_game()
-
-
 def next_actions(game: Game) -> List[Action]:
     actions: List[Action] = []
+
     for direction in Direction:
         if direction in game.location.neighbors:
-            actions.append(GoAction(direction=direction))
-    actions.append(ExitAction())
+            actions.append(Go(direction=direction))
+
+    actions.append(Exit())
+
     return actions
