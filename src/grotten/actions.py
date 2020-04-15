@@ -8,7 +8,7 @@ from grotten.enums import Direction
 from grotten.i18n import _
 
 if TYPE_CHECKING:
-    from grotten.models import Game
+    from grotten.models import Game, Item
 
 
 @dataclass
@@ -41,6 +41,19 @@ class Go(Action):
 
 
 @dataclass
+class PickUp(Action):
+    item: Item
+
+    def __str__(self) -> str:
+        return _(f"Pick up {self.item.name}")
+
+    def apply(self, game: Game) -> None:
+        game.location.items.remove(self.item)
+        game.inventory.append(self.item)
+        game.inventory = sorted(game.inventory)
+
+
+@dataclass
 class ShowInventory(Action):
     def __str__(self) -> str:
         return _("Show inventory")
@@ -51,6 +64,9 @@ class ShowInventory(Action):
 
 def next_actions(game: Game) -> List[Action]:
     actions: List[Action] = []
+
+    for item in game.location.items:
+        actions.append(PickUp(item=item))
 
     for direction in Direction:
         if direction in game.location.neighbors:
