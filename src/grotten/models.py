@@ -1,12 +1,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from gettext import gettext as _
 from typing import Callable, Dict, List, Optional
 
 from grotten import ui
 from grotten.actions import next_actions
 from grotten.enums import Direction
-from grotten.i18n import _
 from grotten.levels import load_level
 
 

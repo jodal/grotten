@@ -1,10 +1,9 @@
 from __future__ import annotations
 
+from gettext import gettext as _
 from typing import List, Optional, TYPE_CHECKING
 
 import click
-
-from grotten.i18n import _
 
 if TYPE_CHECKING:
     from grotten.actions import Action

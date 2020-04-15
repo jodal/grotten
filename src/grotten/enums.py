@@ -1,8 +1,7 @@
 from __future__ import annotations
 
 from enum import Enum
-
-from grotten.i18n import _
+from gettext import gettext as _
 
 
 class Direction(Enum):

@@ -1,11 +1,10 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
+from gettext import gettext as _
 from typing import List, TYPE_CHECKING
 
-from dataclasses import dataclass
-
 from grotten.enums import Direction
-from grotten.i18n import _
 
 if TYPE_CHECKING:
     from grotten.models import Game, Item

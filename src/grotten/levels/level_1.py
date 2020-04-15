@@ -1,4 +1,5 @@
-from grotten.i18n import _
+from gettext import gettext as _
+
 from grotten.enums import Direction
 from grotten.models import Game, Item, Level, Location
 

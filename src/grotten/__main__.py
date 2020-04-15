@@ -1,7 +1,8 @@
+from gettext import gettext as _
+
 import click
 
 from grotten import ui
-from grotten.i18n import _
 from grotten.models import Game
 
 
