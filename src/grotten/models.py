@@ -49,6 +49,7 @@ class Game:
     level: Level
     location: Location
     lives: int = 3
+    inventory: List[Item] = field(default_factory=list)
 
     game_done: bool = False
     tick_done: bool = False
@@ -93,3 +94,12 @@ class Game:
             value=_("Restart"),
             description=_("You respawn at the beginning."),
         )
+
+    def show_inventory(self) -> None:
+        if not self.inventory:
+            ui.describe(kind=_("inventory"), value=_("empty"))
+
+        for item in self.inventory:
+            ui.describe(kind=_("inventory"), value=item.name)
+
+        ui.pause(_("Press any key to close inventory ..."))

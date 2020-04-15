@@ -17,6 +17,10 @@ def clear() -> None:
     click.clear()
 
 
+def pause(text: str = "") -> None:
+    click.pause(text)
+
+
 def banner(text: str) -> None:
     p(f">>> {text} <<<", bold=True, fg="green")
     p()

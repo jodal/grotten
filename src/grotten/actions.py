@@ -40,6 +40,15 @@ class Go(Action):
         game.location = game.location.neighbors[self.direction]
 
 
+@dataclass
+class ShowInventory(Action):
+    def __str__(self) -> str:
+        return _("Show inventory")
+
+    def apply(self, game: Game) -> None:
+        game.show_inventory()
+
+
 def next_actions(game: Game) -> List[Action]:
     actions: List[Action] = []
 
@@ -47,6 +56,7 @@ def next_actions(game: Game) -> List[Action]:
         if direction in game.location.neighbors:
             actions.append(Go(direction=direction))
 
+    actions.append(ShowInventory())
     actions.append(Exit())
 
     return actions

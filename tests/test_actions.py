@@ -46,11 +46,26 @@ def test_go_apply(game: Game, level_1: Level):
     assert game.location == level_1.locations["skeletons"]
 
 
+def test_show_inventory_str():
+    action = actions.ShowInventory()
+
+    assert str(action) == "Show inventory"
+
+
+def test_show_inventory_apply(game: Game):
+    action = actions.ShowInventory()
+
+    action.apply(game)
+
+    # No state change, only UI output
+
+
 def test_next_actions(game: Game):
     result = next_actions(game)
 
     assert result == [
         actions.Go(direction=Direction.NORTH),
         actions.Go(direction=Direction.WEST),
+        actions.ShowInventory(),
         actions.Exit(),
     ]
