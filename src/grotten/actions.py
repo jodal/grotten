@@ -34,7 +34,7 @@ class Go(Action):
     direction: Direction
 
     def __str__(self) -> str:
-        return _("Go {direction}").format(direction=self.direction.value)
+        return _("Go {direction}").format(direction=_(self.direction.value))
 
     def apply(self, game: Game) -> None:
         game.location = game.location.neighbors[self.direction]
