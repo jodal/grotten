@@ -7,7 +7,7 @@ from grotten import ui
 from grotten.actions import next_actions
 from grotten.enums import Direction
 from grotten.i18n import _
-from grotten.levels import get_level
+from grotten.levels import load_level
 
 
 @dataclass
@@ -47,7 +47,7 @@ class Game:
     @classmethod
     def create(cls, *, level: Optional[Level] = None) -> Game:
         if level is None:
-            level = get_level(1)
+            level = load_level(1)
         return cls(level=level, location=level.start)
 
     def tick(self) -> None:
