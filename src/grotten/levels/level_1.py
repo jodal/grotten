@@ -43,4 +43,14 @@ skeletons.connect(Direction.NORTH, treasure)
 
 
 # Level
-level = Level(number=1, start=entrance)
+level = Level(
+    number=1,
+    start=entrance,
+    locations={
+        "entrance": entrance,
+        "pit": pit,
+        "skeletons": skeletons,
+        "dragon_lair": dragon_lair,
+        "treasure": treasure,
+    },
+)

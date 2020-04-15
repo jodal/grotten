@@ -2,13 +2,18 @@ import pytest
 
 from grotten import actions
 from grotten.actions import next_actions
-from grotten.levels import level_1
-from grotten.models import Direction, Game
+from grotten.levels import load_level
+from grotten.models import Direction, Game, Level
 
 
 @pytest.fixture
-def game() -> Game:
-    return Game.create()
+def level_1() -> Level:
+    return load_level(1)
+
+
+@pytest.fixture
+def game(level_1: Level) -> Game:
+    return Game.create(level=level_1)
 
 
 def test_exit_str():
@@ -32,13 +37,13 @@ def test_go_str():
     assert str(action) == "Go North"
 
 
-def test_go_apply(game: Game):
+def test_go_apply(game: Game, level_1: Level):
     action = actions.Go(direction=Direction.WEST)
-    assert game.location == level_1.entrance
+    assert game.location == level_1.locations["entrance"]
 
     action.apply(game)
 
-    assert game.location == level_1.skeletons
+    assert game.location == level_1.locations["skeletons"]
 
 
 def test_next_actions(game: Game):
