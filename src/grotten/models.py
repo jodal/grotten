@@ -1,13 +1,18 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Callable, Dict, Optional
+from typing import Callable, Dict, List, Optional
 
 from grotten import ui
 from grotten.actions import next_actions
 from grotten.enums import Direction
 from grotten.i18n import _
 from grotten.levels import load_level
+
+
+@dataclass(order=True)
+class Item:
+    name: str
 
 
 @dataclass
@@ -17,6 +22,7 @@ class Location:
     neighbors: Dict[Direction, Location] = field(
         default_factory=dict, repr=False
     )
+    items: List[Item] = field(default_factory=list, repr=False)
     effect: Optional[Callable[[Game], None]] = field(default=None, repr=False)
 
     def connect(self, direction: Direction, neighbor: Location) -> None:
@@ -27,6 +33,8 @@ class Location:
         ui.describe(
             kind=_("room"), value=self.name, description=self.description
         )
+        for item in self.items:
+            ui.describe(kind=_("item"), value=item.name)
 
 
 @dataclass
