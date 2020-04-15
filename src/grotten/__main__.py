@@ -1,6 +1,4 @@
-import gettext
 from gettext import gettext as _
-from pathlib import Path
 
 import click
 
@@ -9,9 +7,6 @@ from grotten.models import Game
 
 
 def main() -> None:
-    gettext.bindtextdomain("messages", str(Path(__file__).parent / "locale"))
-    gettext.textdomain("messages")
-
     ui.clear()
     ui.banner(_("Welcome to Grotten!"))
 
