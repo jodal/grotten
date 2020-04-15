@@ -83,7 +83,7 @@ class Game:
         ui.describe(
             kind=_("life"),
             value=_("You lost a life."),
-            description=_(f"You have {self.lives} left."),
+            description=_("You have {lives} left.").format(lives=self.lives),
         )
 
     def restart_level(self) -> None:
