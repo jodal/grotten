@@ -1,0 +1,163 @@
+# Norwegian Bokmål (Norway) translations for PROJECT.
+# Copyright (C) 2020 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-04-16 01:00+0200\n"
+"PO-Revision-Date: 2020-04-16 00:01+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: nb_NO\n"
+"Language-Team: nb_NO <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+#: src/grotten/__main__.py:16
+msgid "Welcome to Grotten!"
+msgstr "Velkommen til Grotten!"
+
+#: src/grotten/__main__.py:24
+msgid "Aborting"
+msgstr "Avbryter"
+
+#: src/grotten/__main__.py:27
+msgid "Welcome back"
+msgstr "Velkommen tilbake"
+
+#: src/grotten/__main__.py:29
+msgid "Game over"
+msgstr "Spill over"
+
+#: src/grotten/actions.py:26
+msgid "Exit game"
+msgstr "Avslutt spill"
+
+#: src/grotten/actions.py:37
+msgid "Go {direction}"
+msgstr "Gå {direction}"
+
+#: src/grotten/actions.py:48
+msgid "Pick up {item}"
+msgstr "Plukk opp {item}"
+
+#: src/grotten/actions.py:59
+msgid "Show inventory"
+msgstr "Vis inventar"
+
+#: src/grotten/enums.py:9
+msgid "North"
+msgstr "nordover"
+
+#: src/grotten/enums.py:10
+msgid "East"
+msgstr "østover"
+
+#: src/grotten/enums.py:11
+msgid "South"
+msgstr "sørover"
+
+#: src/grotten/enums.py:12
+msgid "West"
+msgstr "vestover"
+
+#: src/grotten/models.py:34
+msgid "room"
+msgstr "rom"
+
+#: src/grotten/models.py:37
+msgid "item"
+msgstr "ting"
+
+#: src/grotten/models.py:84
+msgid "life"
+msgstr "liv"
+
+#: src/grotten/models.py:85
+msgid "You lost a life."
+msgstr "Du mistet et liv."
+
+#: src/grotten/models.py:86
+msgid "You have {lives} left."
+msgstr "Du har {lives} igjen."
+
+#: src/grotten/models.py:93
+msgid "level"
+msgstr "brett"
+
+#: src/grotten/models.py:94
+msgid "Restart"
+msgstr "Restart"
+
+#: src/grotten/models.py:95
+msgid "You respawn at the beginning."
+msgstr "Du er tilbake på start."
+
+#: src/grotten/models.py:100 src/grotten/models.py:103
+msgid "inventory"
+msgstr "inventar"
+
+#: src/grotten/models.py:100
+msgid "empty"
+msgstr "tomt"
+
+#: src/grotten/models.py:105
+msgid "Press any key to close inventory ..."
+msgstr "Trykk en knapp for å lukke inventaret..."
+
+#: src/grotten/ui.py:40
+msgid "What do you want to do?"
+msgstr "Hva vil du gjøre?"
+
+#: src/grotten/ui.py:47
+msgid "Select"
+msgstr "Velg"
+
+#: src/grotten/levels/level_1.py:15
+msgid "Entrance"
+msgstr "Inngang"
+
+#: src/grotten/levels/level_1.py:16
+msgid "You find yourself in a dark and scary cave."
+msgstr "Du befinner deg i en mørk og skummel grotte."
+
+#: src/grotten/levels/level_1.py:19
+msgid "Pit"
+msgstr "Gruvesjakt"
+
+#: src/grotten/levels/level_1.py:20
+msgid "You fell into a deep dark pit."
+msgstr "Du falt ned i en dyp, mørk gruvesjakt."
+
+#: src/grotten/levels/level_1.py:24
+msgid "Skeletons"
+msgstr "Skjelett"
+
+#: src/grotten/levels/level_1.py:25
+msgid "You stumble upon the skeletons of three humans and a dog."
+msgstr "Du snubler over skjelletene etter tre mennesker og en hund."
+
+#: src/grotten/levels/level_1.py:26
+msgid "Sword"
+msgstr "Sverd"
+
+#: src/grotten/levels/level_1.py:29
+msgid "Dragon lair"
+msgstr "Dragereir"
+
+#: src/grotten/levels/level_1.py:30
+msgid "There is large green dragon sleeping on the floor in front of you."
+msgstr "Det er en stor grønn drage som sover på gulvet foran deg."
+
+#: src/grotten/levels/level_1.py:35
+msgid "Treasure"
+msgstr "Skatt"
+
+#: src/grotten/levels/level_1.py:35
+msgid "You found the treasure!"
+msgstr "Du fant skatten!"

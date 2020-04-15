@@ -23,7 +23,7 @@ pit = Location(
 skeletons = Location(
     name=_("Skeletons"),
     description=_("You stumble upon the skeletons of three humans and a dog."),
-    items=[Item(name="Sword")],
+    items=[Item(name=_("Sword"))],
 )
 dragon_lair = Location(
     name=_("Dragon lair"),
