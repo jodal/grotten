@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-16 01:00+0200\n"
+"POT-Creation-Date: 2020-04-16 08:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,147 +17,147 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: src/grotten/__main__.py:16
-msgid "Welcome to Grotten!"
-msgstr ""
-
-#: src/grotten/__main__.py:24
-msgid "Aborting"
-msgstr ""
-
-#: src/grotten/__main__.py:27
-msgid "Welcome back"
-msgstr ""
-
-#: src/grotten/__main__.py:29
-msgid "Game over"
-msgstr ""
-
-#: src/grotten/actions.py:26
+#: src/grotten/actions.py:25
 msgid "Exit game"
 msgstr ""
 
-#: src/grotten/actions.py:37
+#: src/grotten/actions.py:36
 msgid "Go {direction}"
 msgstr ""
 
-#: src/grotten/actions.py:48
+#: src/grotten/actions.py:47
 msgid "Pick up {item}"
 msgstr ""
 
-#: src/grotten/actions.py:59
+#: src/grotten/actions.py:58
 msgid "Show inventory"
 msgstr ""
 
-#: src/grotten/enums.py:9
-msgid "North"
+#: src/grotten/cli.py:19
+msgid "Welcome to Grotten!"
 msgstr ""
 
-#: src/grotten/enums.py:10
-msgid "East"
+#: src/grotten/cli.py:27
+msgid "Aborting"
 msgstr ""
 
-#: src/grotten/enums.py:11
-msgid "South"
+#: src/grotten/cli.py:30
+msgid "Welcome back"
 msgstr ""
 
-#: src/grotten/enums.py:12
-msgid "West"
+#: src/grotten/cli.py:32
+msgid "Game over"
 msgstr ""
 
-#: src/grotten/models.py:34
-msgid "room"
+#: src/grotten/cli.py:56
+msgid "location"
 msgstr ""
 
-#: src/grotten/models.py:37
+#: src/grotten/cli.py:61
 msgid "item"
 msgstr ""
 
-#: src/grotten/models.py:84
-msgid "life"
-msgstr ""
-
-#: src/grotten/models.py:85
-msgid "You lost a life."
-msgstr ""
-
-#: src/grotten/models.py:86
-msgid "You have {lives} left."
-msgstr ""
-
-#: src/grotten/models.py:93
-msgid "level"
-msgstr ""
-
-#: src/grotten/models.py:94
-msgid "Restart"
-msgstr ""
-
-#: src/grotten/models.py:95
-msgid "You respawn at the beginning."
-msgstr ""
-
-#: src/grotten/models.py:100 src/grotten/models.py:103
+#: src/grotten/cli.py:73 src/grotten/cli.py:76
 msgid "inventory"
 msgstr ""
 
-#: src/grotten/models.py:100
+#: src/grotten/cli.py:73
 msgid "empty"
 msgstr ""
 
-#: src/grotten/models.py:105
+#: src/grotten/cli.py:78
 msgid "Press any key to close inventory ..."
 msgstr ""
 
-#: src/grotten/ui.py:40
+#: src/grotten/cli.py:82
 msgid "What do you want to do?"
 msgstr ""
 
-#: src/grotten/ui.py:47
+#: src/grotten/cli.py:89
 msgid "Select"
 msgstr ""
 
-#: src/grotten/levels/level_1.py:15
-msgid "Entrance"
+#: src/grotten/enums.py:8
+msgid "North"
+msgstr ""
+
+#: src/grotten/enums.py:9
+msgid "East"
+msgstr ""
+
+#: src/grotten/enums.py:10
+msgid "South"
+msgstr ""
+
+#: src/grotten/enums.py:11
+msgid "West"
+msgstr ""
+
+#: src/grotten/models.py:83
+msgid "life"
+msgstr ""
+
+#: src/grotten/models.py:84
+msgid "You lost a life."
+msgstr ""
+
+#: src/grotten/models.py:85
+msgid "You have {lives} left."
+msgstr ""
+
+#: src/grotten/models.py:92
+msgid "level"
+msgstr ""
+
+#: src/grotten/models.py:93
+msgid "Restart"
+msgstr ""
+
+#: src/grotten/models.py:94
+msgid "You respawn at the beginning."
 msgstr ""
 
 #: src/grotten/levels/level_1.py:16
+msgid "Entrance"
+msgstr ""
+
+#: src/grotten/levels/level_1.py:17
 msgid "You find yourself in a dark and scary cave."
 msgstr ""
 
-#: src/grotten/levels/level_1.py:19
+#: src/grotten/levels/level_1.py:20
 msgid "Pit"
 msgstr ""
 
-#: src/grotten/levels/level_1.py:20
+#: src/grotten/levels/level_1.py:21
 msgid "You fell into a deep dark pit."
 msgstr ""
 
-#: src/grotten/levels/level_1.py:24
+#: src/grotten/levels/level_1.py:25
 msgid "Skeletons"
 msgstr ""
 
-#: src/grotten/levels/level_1.py:25
+#: src/grotten/levels/level_1.py:26
 msgid "You stumble upon the skeletons of three humans and a dog."
 msgstr ""
 
-#: src/grotten/levels/level_1.py:26
+#: src/grotten/levels/level_1.py:27
 msgid "Sword"
 msgstr ""
 
-#: src/grotten/levels/level_1.py:29
+#: src/grotten/levels/level_1.py:30
 msgid "Dragon lair"
 msgstr ""
 
-#: src/grotten/levels/level_1.py:30
+#: src/grotten/levels/level_1.py:31
 msgid "There is large green dragon sleeping on the floor in front of you."
 msgstr ""
 
-#: src/grotten/levels/level_1.py:35
+#: src/grotten/levels/level_1.py:36
 msgid "Treasure"
 msgstr ""
 
-#: src/grotten/levels/level_1.py:35
+#: src/grotten/levels/level_1.py:36
 msgid "You found the treasure!"
 msgstr ""
 
