@@ -8,13 +8,6 @@ from grotten.enums import Direction
 from grotten.levels import load_level
 
 
-@dataclass
-class Message:
-    kind: str
-    title: str
-    content: Optional[str]
-
-
 @dataclass(order=True)
 class Item:
     name: str
@@ -43,17 +36,27 @@ class Level:
 
 
 @dataclass
-class Game:
-    level: Level
-    location: Location
-    running: bool = True
-    lives: int = 3
-    inventory: List[Item] = field(default_factory=list)
+class Message:
+    kind: str
+    title: str
+    content: Optional[str]
 
-    # Tick state
+
+@dataclass
+class Tick:
     messages: List[Message] = field(default_factory=list)
     inventory_open: bool = False
     actions_allowed: bool = True
+
+
+@dataclass
+class Game:
+    level: Level
+    location: Location
+    inventory: List[Item] = field(default_factory=list)
+    lives: int = 3
+    running: bool = True
+    tick: Tick = field(default_factory=Tick)
 
     @classmethod
     def create(cls, *, level: Optional[Level] = None) -> Game:
@@ -61,24 +64,22 @@ class Game:
             level = load_level(1)
         return cls(level=level, location=level.start)
 
-    def tick_reset(self) -> None:
-        self.messages = []
-        self.inventory_open = False
-        self.actions_allowed = True
+    def end_game(self) -> None:
+        self.running = False
+
+    def begin_tick(self) -> None:
+        self.tick = Tick()
 
     def create_message(
         self, *, kind: str, title: str, content: Optional[str] = None
     ) -> Message:
         message = Message(kind=kind, title=title, content=content)
-        self.messages.append(message)
+        self.tick.messages.append(message)
         return message
-
-    def end_game(self) -> None:
-        self.running = False
 
     def lose_life(self) -> None:
         self.lives -= 1
-        self.actions_allowed = self.lives > 0
+        self.tick.actions_allowed = self.lives > 0
         self.create_message(
             kind=_("life"),
             title=_("You lost a life."),
@@ -87,7 +88,7 @@ class Game:
 
     def restart_level(self) -> None:
         self.location = self.level.start
-        self.actions_allowed = False
+        self.tick.actions_allowed = False
         self.create_message(
             kind=_("level"),
             title=_("Restart"),
@@ -95,4 +96,4 @@ class Game:
         )
 
     def show_inventory(self) -> None:
-        self.inventory_open = True
+        self.tick.inventory_open = True

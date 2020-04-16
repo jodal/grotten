@@ -34,18 +34,18 @@ def main() -> None:
 
 def tick(game: Game) -> None:
     describe_location(game.location)
-    show_messages(game.messages)
+    show_messages(game.tick.messages)
 
-    game.tick_reset()
+    game.begin_tick()
 
     if game.location.effect is not None:
         game.location.effect(game)
 
-    if game.actions_allowed:
+    if game.tick.actions_allowed:
         action = select_action(next_actions(game))
         action.apply(game)
 
-    if game.inventory_open:
+    if game.tick.inventory_open:
         show_inventory(game.inventory)
 
     click.clear()

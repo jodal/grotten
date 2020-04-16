@@ -75,11 +75,11 @@ def test_show_inventory_str():
 
 def test_show_inventory_apply(game: Game):
     action = actions.ShowInventory()
-    assert not game.inventory_open
+    assert not game.tick.inventory_open
 
     action.apply(game)
 
-    assert game.inventory_open
+    assert game.tick.inventory_open
 
 
 def test_next_actions(game: Game):
