@@ -6,7 +6,7 @@ from grotten.models import Game, Item, Level, Location
 
 # Effects
 def fall_into_pit(game: Game) -> None:
-    game.lose_life()
+    game.die()
     if game.lives > 0:
         game.restart_level()
 

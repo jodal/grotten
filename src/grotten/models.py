@@ -77,12 +77,12 @@ class Game:
         self.tick.messages.append(message)
         return message
 
-    def lose_life(self) -> None:
+    def die(self) -> None:
         self.lives -= 1
         self.tick.actions_allowed = self.lives > 0
         self.create_message(
             kind=_("life"),
-            title=_("You lost a life."),
+            title=_("You died"),
             content=_("You have {lives} left.").format(lives=self.lives),
         )
 
