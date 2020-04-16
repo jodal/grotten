@@ -66,7 +66,7 @@ class Game:
         self.inventory_open = False
         self.actions_allowed = True
 
-    def message(
+    def create_message(
         self, *, kind: str, title: str, content: Optional[str] = None
     ) -> Message:
         message = Message(kind=kind, title=title, content=content)
@@ -79,7 +79,7 @@ class Game:
     def lose_life(self) -> None:
         self.lives -= 1
         self.actions_allowed = self.lives > 0
-        self.message(
+        self.create_message(
             kind=_("life"),
             title=_("You lost a life."),
             content=_("You have {lives} left.").format(lives=self.lives),
@@ -88,7 +88,7 @@ class Game:
     def restart_level(self) -> None:
         self.location = self.level.start
         self.actions_allowed = False
-        self.message(
+        self.create_message(
             kind=_("level"),
             title=_("Restart"),
             content=_("You respawn at the beginning."),
