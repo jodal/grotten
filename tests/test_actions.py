@@ -1,19 +1,6 @@
-import pytest
-
 from grotten import actions
 from grotten.actions import next_actions
-from grotten.levels import load_level
-from grotten.models import Direction, Game, Item, Level
-
-
-@pytest.fixture
-def level_1() -> Level:
-    return load_level(1)
-
-
-@pytest.fixture
-def game(level_1: Level) -> Game:
-    return Game.create(level=level_1)
+from grotten.models import Direction, Item
 
 
 def test_exit_str():
@@ -22,7 +9,7 @@ def test_exit_str():
     assert str(action) == "Exit game"
 
 
-def test_exit_apply(game: Game):
+def test_exit_apply(game):
     action = actions.Exit()
     assert game.running is True
 
@@ -37,7 +24,7 @@ def test_go_str():
     assert str(action) == "Go North"
 
 
-def test_go_apply(game: Game, level_1: Level):
+def test_go_apply(game, level_1):
     action = actions.Go(direction=Direction.WEST)
     assert game.location == level_1.locations["entrance"]
 
@@ -52,7 +39,7 @@ def test_pick_up_str():
     assert str(action) == "Pick up Sword"
 
 
-def test_pick_up_apply(game: Game, level_1: Level):
+def test_pick_up_apply(game, level_1):
     game.location = level_1.locations["skeletons"]
     item = game.location.items[0]
     action = actions.PickUp(item=item)
@@ -73,7 +60,7 @@ def test_show_inventory_str():
     assert str(action) == "Show inventory"
 
 
-def test_show_inventory_apply(game: Game):
+def test_show_inventory_apply(game):
     action = actions.ShowInventory()
     assert not game.tick.inventory_open
 
@@ -82,7 +69,7 @@ def test_show_inventory_apply(game: Game):
     assert game.tick.inventory_open
 
 
-def test_next_actions(game: Game):
+def test_next_actions(game):
     result = next_actions(game)
 
     assert result == [
@@ -93,7 +80,7 @@ def test_next_actions(game: Game):
     ]
 
 
-def test_next_actions_with_items(game: Game, level_1: Level):
+def test_next_actions_with_items(game, level_1):
     game.location = level_1.locations["skeletons"]
     assert len(game.location.items) == 1
     item = game.location.items[0]
