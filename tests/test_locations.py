@@ -24,9 +24,3 @@ def test_connect(bedroom, bathroom):
 
     assert bedroom.neighbors == {Direction.NORTH: bathroom}
     assert bathroom.neighbors == {Direction.SOUTH: bedroom}
-
-
-def test_print_description(capsys, bedroom):
-    bedroom.describe()
-
-    assert capsys

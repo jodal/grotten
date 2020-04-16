@@ -4,10 +4,15 @@ from dataclasses import dataclass, field
 from gettext import gettext as _
 from typing import Callable, Dict, List, Optional
 
-from grotten import ui
-from grotten.actions import next_actions
 from grotten.enums import Direction
 from grotten.levels import load_level
+
+
+@dataclass
+class Message:
+    kind: str
+    title: str
+    content: Optional[str]
 
 
 @dataclass(order=True)
@@ -29,13 +34,6 @@ class Location:
         self.neighbors[direction] = neighbor
         neighbor.neighbors[-direction] = self
 
-    def describe(self) -> None:
-        ui.describe(
-            kind=_("room"), value=self.name, description=self.description
-        )
-        for item in self.items:
-            ui.describe(kind=_("item"), value=item.name)
-
 
 @dataclass
 class Level:
@@ -48,11 +46,14 @@ class Level:
 class Game:
     level: Level
     location: Location
+    running: bool = True
     lives: int = 3
     inventory: List[Item] = field(default_factory=list)
 
-    game_done: bool = False
-    tick_done: bool = False
+    # Tick state
+    messages: List[Message] = field(default_factory=list)
+    inventory_open: bool = False
+    actions_allowed: bool = True
 
     @classmethod
     def create(cls, *, level: Optional[Level] = None) -> Game:
@@ -60,46 +61,38 @@ class Game:
             level = load_level(1)
         return cls(level=level, location=level.start)
 
-    def tick(self) -> None:
-        self.tick_done = False
+    def tick_reset(self) -> None:
+        self.messages = []
+        self.inventory_open = False
+        self.actions_allowed = True
 
-        self.location.describe()
-        if self.location.effect is not None:
-            self.location.effect(self)
-
-        if self.tick_done:
-            return
-
-        action = ui.select_action(next_actions(self))
-        action.apply(self)
-        ui.clear()
+    def message(
+        self, *, kind: str, title: str, content: Optional[str] = None
+    ) -> Message:
+        message = Message(kind=kind, title=title, content=content)
+        self.messages.append(message)
+        return message
 
     def end_game(self) -> None:
-        self.game_done = True
+        self.running = False
 
     def lose_life(self) -> None:
         self.lives -= 1
-        self.tick_done = self.lives == 0
-        ui.describe(
+        self.actions_allowed = self.lives > 0
+        self.message(
             kind=_("life"),
-            value=_("You lost a life."),
-            description=_("You have {lives} left.").format(lives=self.lives),
+            title=_("You lost a life."),
+            content=_("You have {lives} left.").format(lives=self.lives),
         )
 
     def restart_level(self) -> None:
         self.location = self.level.start
-        self.tick_done = True
-        ui.describe(
+        self.actions_allowed = False
+        self.message(
             kind=_("level"),
-            value=_("Restart"),
-            description=_("You respawn at the beginning."),
+            title=_("Restart"),
+            content=_("You respawn at the beginning."),
         )
 
     def show_inventory(self) -> None:
-        if not self.inventory:
-            ui.describe(kind=_("inventory"), value=_("empty"))
-
-        for item in self.inventory:
-            ui.describe(kind=_("inventory"), value=item.name)
-
-        ui.pause(_("Press any key to close inventory ..."))
+        self.inventory_open = True

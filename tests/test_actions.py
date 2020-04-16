@@ -24,11 +24,11 @@ def test_exit_str():
 
 def test_exit_apply(game: Game):
     action = actions.Exit()
-    assert game.game_done is False
+    assert game.running is True
 
     action.apply(game)
 
-    assert game.game_done is True
+    assert game.running is False
 
 
 def test_go_str():
@@ -75,10 +75,11 @@ def test_show_inventory_str():
 
 def test_show_inventory_apply(game: Game):
     action = actions.ShowInventory()
+    assert not game.inventory_open
 
     action.apply(game)
 
-    # No state change, only UI output
+    assert game.inventory_open
 
 
 def test_next_actions(game: Game):
