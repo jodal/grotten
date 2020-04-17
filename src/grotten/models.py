@@ -54,10 +54,25 @@ class Message:
 
 
 @dataclass
+class Inventory:
+    items: List[Item] = field(default_factory=list)
+
+    def add(self, item: Item) -> None:
+        self.items = sorted(self.items + [item])
+
+    def get_weapon(self) -> Item:
+        best_weapon = Item(_("Bare Hands"), attack_strength=3)
+        for item in self.items:
+            if item.attack_strength > best_weapon.attack_strength:
+                best_weapon = item
+        return best_weapon
+
+
+@dataclass
 class Game:
     level: Level
     location: Location
-    inventory: List[Item] = field(default_factory=list)
+    inventory: Inventory = field(default_factory=Inventory)
     lives: int = 3
     running: bool = True
     messages: List[Message] = field(default_factory=list)
@@ -79,15 +94,6 @@ class Game:
         messages = self.messages
         self.messages = []
         return messages
-
-    # --- Inventory use
-
-    def weapon(self) -> Item:
-        best_weapon = Item(_("Bare Hands"), attack_strength=3)
-        for item in self.inventory:
-            if item.attack_strength > best_weapon.attack_strength:
-                best_weapon = item
-        return best_weapon
 
     # --- Actions
 
@@ -136,7 +142,7 @@ class Game:
             self.location.effect(self)
 
     def attack(self, creature: Creature) -> Fraction:
-        weapon = self.weapon()
+        weapon = self.inventory.get_weapon()
         winning_odds = Fraction(weapon.attack_strength, creature.strength)
         self.create_message(
             kind=Kind.ACTION,
@@ -177,21 +183,21 @@ class Game:
 
     def pick_up(self, item: Item) -> None:
         self.location.items.remove(item)
-        self.inventory = sorted(self.inventory + [item])
+        self.inventory.add(item)
         self.create_message(
             kind=Kind.ACTION,
             title=_("Picking up {item}").format(item=item.name),
         )
 
     def show_inventory(self) -> None:
-        if not self.inventory:
+        if not self.inventory.items:
             self.create_message(
                 kind=Kind.INVENTORY,
                 title=_("empty"),
                 content=_("The inventory is empty."),
             )
 
-        for item in self.inventory:
+        for item in self.inventory.items:
             self.create_message(kind=Kind.INVENTORY, title=item.name)
 
     # --- Action building blocks

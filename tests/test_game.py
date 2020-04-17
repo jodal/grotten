@@ -100,7 +100,7 @@ def test_attack_with_bare_hands(game, level_1):
     game.location = level_1.locations["dragon_lair"]
     creature = game.location.creatures[0]
     assert creature.strength == 12
-    assert game.weapon().attack_strength == 3
+    assert game.inventory.get_weapon().attack_strength == 3
 
     winning_odds = game.attack(creature)
 
@@ -109,10 +109,10 @@ def test_attack_with_bare_hands(game, level_1):
 
 def test_attack_with_sword(game, level_1):
     game.location = level_1.locations["dragon_lair"]
-    game.inventory.append(Item(name="sword", attack_strength=8))
+    game.inventory.add(Item(name="sword", attack_strength=8))
     creature = game.location.creatures[0]
     assert creature.strength == 12
-    assert game.weapon().attack_strength == 8
+    assert game.inventory.get_weapon().attack_strength == 8
 
     winning_odds = game.attack(creature)
 
@@ -124,13 +124,13 @@ def test_pick_up(game, level_1):
     item = game.location.items[0]
 
     assert len(game.location.items) == 1
-    assert len(game.inventory) == 0
+    assert len(game.inventory.items) == 0
 
     game.pick_up(item)
 
     assert len(game.location.items) == 0
-    assert len(game.inventory) == 1
-    assert item in game.inventory
+    assert len(game.inventory.items) == 1
+    assert item in game.inventory.items
 
 
 def test_show_inventory_when_empty(game):
@@ -147,7 +147,7 @@ def test_show_inventory_when_empty(game):
 
 
 def test_show_inventory_with_content(game):
-    game.inventory.append(Item(name="Sword"))
+    game.inventory.add(Item(name="Sword"))
 
     game.show_inventory()
 
