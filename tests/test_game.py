@@ -44,6 +44,18 @@ def test_go(game, level_1):
     game.go(Direction.WEST)
 
     assert game.location == level_1.locations["skeletons"]
+    assert len(game.tick.messages) >= 2
+    assert game.tick.messages[0].title == "Going west"
+    assert game.tick.messages[1].title == "Skeletons"
+
+
+def test_go_with_new_location_effect(game, level_1):
+    lives_before = game.lives
+
+    game.go(Direction.NORTH)
+
+    # Effect causes you to die
+    assert game.lives == lives_before - 1
 
 
 def test_pick_up(game, level_1):

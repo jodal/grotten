@@ -83,6 +83,18 @@ class Game:
             kind=_("action"),
             title=_("Going {direction}").format(direction=_(direction.value)),
         )
+        self.describe_location()
+        if self.location.effect is not None:
+            self.location.effect(self)
+
+    def describe_location(self) -> None:
+        self.create_message(
+            kind=_("location"),
+            title=self.location.name,
+            content=self.location.description,
+        )
+        for item in self.location.items:
+            self.create_message(kind=_("item"), title=item.name)
 
     def die(self) -> None:
         self.lives -= 1

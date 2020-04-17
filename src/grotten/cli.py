@@ -11,11 +11,12 @@ from grotten.models import Game
 
 if TYPE_CHECKING:
     from grotten.actions import Action
-    from grotten.models import Item, Location, Message
+    from grotten.models import Item, Message
 
 
 def main() -> None:
     game = Game.create()
+    game.describe_location()
 
     try:
         while game.running and game.lives > 0:
@@ -31,14 +32,9 @@ def main() -> None:
 
 def tick(game: Game) -> None:
     click.clear()
-
-    describe_location(game.location)
     show_messages(game.tick.messages)
 
     game.begin_tick()
-
-    if game.location.effect is not None:
-        game.location.effect(game)
 
     if game.tick.actions_allowed:
         action = select_action(next_actions(game))
@@ -46,16 +42,6 @@ def tick(game: Game) -> None:
 
     if game.tick.inventory_open:
         show_inventory(game.inventory)
-
-
-def describe_location(location: Location) -> None:
-    describe(
-        kind=_("location"),
-        value=location.name,
-        description=location.description,
-    )
-    for item in location.items:
-        describe(kind=_("item"), value=item.name)
 
 
 def show_messages(messages: List[Message]) -> None:
