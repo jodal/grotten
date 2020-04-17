@@ -1,5 +1,5 @@
 from grotten.enums import Direction
-from grotten.models import Game, Message
+from grotten.models import Game, Item, Message
 
 
 def test_loads_level_1_by_default():
@@ -20,12 +20,10 @@ def test_end_game(game):
 def test_begin_tick(game):
     game.create_message(kind="a_kind", title="A title")
     assert len(game.tick.messages) == 1
-    game.tick.inventory_open = True
 
     game.begin_tick()
 
     assert game.tick.messages == []
-    assert game.tick.inventory_open is False
 
 
 def test_create_message(game):
@@ -101,9 +99,23 @@ def test_restart_level(game, level_1):
     assert game.tick.messages[0].title == "Restart"
 
 
-def test_show_inventory(game):
-    assert game.tick.inventory_open is False
+def test_show_inventory_when_empty(game):
+    game.show_inventory()
+
+    assert len(game.tick.messages) == 1
+    assert game.tick.messages == [
+        Message(
+            kind="inventory", title="empty", content="The inventory is empty."
+        )
+    ]
+
+
+def test_show_inventory_with_content(game):
+    game.inventory.append(Item(name="Sword"))
 
     game.show_inventory()
 
-    assert game.tick.inventory_open is True
+    assert len(game.tick.messages) == 1
+    assert game.tick.messages == [
+        Message(kind="inventory", title="Sword", content=None)
+    ]

@@ -45,7 +45,6 @@ class Message:
 @dataclass
 class Tick:
     messages: List[Message] = field(default_factory=list)
-    inventory_open: bool = False
 
 
 @dataclass
@@ -120,4 +119,12 @@ class Game:
         )
 
     def show_inventory(self) -> None:
-        self.tick.inventory_open = True
+        if not self.inventory:
+            self.create_message(
+                kind=_("inventory"),
+                title=_("empty"),
+                content=_("The inventory is empty."),
+            )
+
+        for item in self.inventory:
+            self.create_message(kind=_("inventory"), title=item.name)

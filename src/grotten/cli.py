@@ -11,7 +11,7 @@ from grotten.models import Game
 
 if TYPE_CHECKING:
     from grotten.actions import Action
-    from grotten.models import Item, Message
+    from grotten.models import Message
 
 
 def main() -> None:
@@ -40,25 +40,12 @@ def tick(game: Game) -> None:
     action = select_action(next_actions(game))
     action.apply(game)
 
-    if game.tick.inventory_open:
-        show_inventory(game.inventory)
-
 
 def show_messages(messages: List[Message]) -> None:
     for message in messages:
         describe(
             kind=message.kind, value=message.title, description=message.content
         )
-
-
-def show_inventory(inventory: List[Item]) -> None:
-    if not inventory:
-        describe(kind=_("inventory"), value=_("empty"))
-
-    for item in inventory:
-        describe(kind=_("inventory"), value=item.name)
-
-    click.pause(_("Press any key to close inventory ..."))
 
 
 def select_action(actions: List[Action]) -> Action:

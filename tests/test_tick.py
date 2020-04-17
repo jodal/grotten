@@ -5,4 +5,3 @@ def test_tick():
     tick = Tick()
 
     assert tick.messages == []
-    assert tick.inventory_open is False
