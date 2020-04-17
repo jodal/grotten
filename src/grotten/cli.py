@@ -15,9 +15,6 @@ if TYPE_CHECKING:
 
 
 def main() -> None:
-    click.clear()
-    banner(_("Welcome to Grotten!"))
-
     game = Game.create()
 
     try:
@@ -33,6 +30,8 @@ def main() -> None:
 
 
 def tick(game: Game) -> None:
+    click.clear()
+
     describe_location(game.location)
     show_messages(game.tick.messages)
 
@@ -47,8 +46,6 @@ def tick(game: Game) -> None:
 
     if game.tick.inventory_open:
         show_inventory(game.inventory)
-
-    click.clear()
 
 
 def describe_location(location: Location) -> None:
