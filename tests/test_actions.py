@@ -3,14 +3,14 @@ from grotten.actions import next_actions
 from grotten.models import Direction, Item
 
 
-def test_exit_str():
-    action = actions.Exit()
+def test_end_game_str():
+    action = actions.EndGame()
 
-    assert str(action) == "Exit game"
+    assert str(action) == "End game"
 
 
-def test_exit_apply(game):
-    action = actions.Exit()
+def test_end_game(game):
+    action = actions.EndGame()
     assert game.running is True
 
     action.apply(game)
@@ -76,7 +76,7 @@ def test_next_actions(game):
         actions.Go(direction=Direction.NORTH),
         actions.Go(direction=Direction.WEST),
         actions.ShowInventory(),
-        actions.Exit(),
+        actions.EndGame(),
     ]
 
 
@@ -92,5 +92,5 @@ def test_next_actions_with_items(game, level_1):
         actions.Go(direction=Direction.NORTH),
         actions.Go(direction=Direction.EAST),
         actions.ShowInventory(),
-        actions.Exit(),
+        actions.EndGame(),
     ]

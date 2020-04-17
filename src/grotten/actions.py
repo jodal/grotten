@@ -20,9 +20,9 @@ class Action:
 
 
 @dataclass
-class Exit(Action):
+class EndGame(Action):
     def __str__(self) -> str:
-        return _("Exit game")
+        return _("End game")
 
     def apply(self, game: Game) -> None:
         game.end_game()
@@ -70,6 +70,6 @@ def next_actions(game: Game) -> List[Action]:
             actions.append(Go(direction=direction))
 
     actions.append(ShowInventory())
-    actions.append(Exit())
+    actions.append(EndGame())
 
     return actions
