@@ -22,12 +22,13 @@ def main() -> None:
         while game.running and game.lives > 0:
             tick(game)
     except click.exceptions.Abort:
-        banner(_("Aborting"))
+        p()
+        p(_("Aborting"), bold=True, fg="yellow")
 
     if game.running is False:
-        banner(_("Welcome back"))
+        p(_("Welcome back"), bold=True)
     if game.lives == 0:
-        banner(_("Game over"))
+        p(_("Game over"), bold=True, fg="red")
 
 
 def tick(game: Game) -> None:
@@ -75,11 +76,6 @@ def select_action(actions: List[Action]) -> Action:
 
     action = actions[num - 1]
     return action
-
-
-def banner(text: str) -> None:
-    p(f">>> {text} <<<", bold=True, fg="green")
-    p()
 
 
 def describe(
