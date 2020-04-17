@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from gettext import gettext as _
-from typing import List, Optional, TYPE_CHECKING
+from typing import List, TYPE_CHECKING
 
 import click
 from click import secho as p
@@ -43,9 +43,11 @@ def tick(game: Game) -> None:
 
 def show_messages(messages: List[Message]) -> None:
     for message in messages:
-        describe(
-            kind=message.kind, value=message.title, description=message.content
-        )
+        p(f"[{message.kind}] ", nl=False, fg="magenta")
+        p(message.title, bold=True)
+        if message.content is not None:
+            p(message.content)
+        p()
 
 
 def select_action(actions: List[Action]) -> Action:
@@ -63,13 +65,3 @@ def select_action(actions: List[Action]) -> Action:
 
     action = actions[num - 1]
     return action
-
-
-def describe(
-    *, kind: str, value: str, description: Optional[str] = None
-) -> None:
-    p(f"[{kind}] ", nl=False, fg="magenta")
-    p(value, bold=description is not None)
-    if description is not None:
-        p(description)
-    p()
