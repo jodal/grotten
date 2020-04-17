@@ -18,6 +18,9 @@ pytest-mypy = "^0.6.1"
 babel = "^2.8.0"
 pytest-cov = "^2.8.1"
 
+[tool.poetry.scripts]
+grotten = "grotten.cli:main"
+
 [tool.black]
 target-version = ["py38"]
 line-length = 80
