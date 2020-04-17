@@ -58,6 +58,20 @@ class Game:
             level = load_level(1)
         return cls(level=level, location=level.start)
 
+    def create_message(
+        self, *, kind: str, title: str, content: Optional[str] = None
+    ) -> Message:
+        message = Message(kind=kind, title=title, content=content)
+        self.messages.append(message)
+        return message
+
+    def pop_messages(self) -> List[Message]:
+        messages = self.messages
+        self.messages = []
+        return messages
+
+    # --- Actions
+
     def apply(self, action: actions.Action) -> None:
         if isinstance(action, actions.EndGame):
             return self.end_game()
@@ -72,18 +86,6 @@ class Game:
         self.running = False
         self.create_message(kind=_("game"), title=_("Welcome back"))
 
-    def pop_messages(self) -> List[Message]:
-        messages = self.messages
-        self.messages = []
-        return messages
-
-    def create_message(
-        self, *, kind: str, title: str, content: Optional[str] = None
-    ) -> Message:
-        message = Message(kind=kind, title=title, content=content)
-        self.messages.append(message)
-        return message
-
     def go(self, direction: Direction) -> None:
         self.location = self.location.neighbors[direction]
         self.create_message(
@@ -93,6 +95,27 @@ class Game:
         self.describe_location()
         if self.location.effect is not None:
             self.location.effect(self)
+
+    def pick_up(self, item: Item) -> None:
+        self.location.items.remove(item)
+        self.inventory = sorted(self.inventory + [item])
+        self.create_message(
+            kind=_("action"),
+            title=_("Picking up {item}").format(item=item.name),
+        )
+
+    def show_inventory(self) -> None:
+        if not self.inventory:
+            self.create_message(
+                kind=_("inventory"),
+                title=_("empty"),
+                content=_("The inventory is empty."),
+            )
+
+        for item in self.inventory:
+            self.create_message(kind=_("inventory"), title=item.name)
+
+    # --- Action building blocks
 
     def describe_location(self) -> None:
         self.create_message(
@@ -120,22 +143,3 @@ class Game:
             title=_("Restart"),
             content=_("You respawn at the beginning."),
         )
-
-    def pick_up(self, item: Item) -> None:
-        self.location.items.remove(item)
-        self.inventory = sorted(self.inventory + [item])
-        self.create_message(
-            kind=_("action"),
-            title=_("Picking up {item}").format(item=item.name),
-        )
-
-    def show_inventory(self) -> None:
-        if not self.inventory:
-            self.create_message(
-                kind=_("inventory"),
-                title=_("empty"),
-                content=_("The inventory is empty."),
-            )
-
-        for item in self.inventory:
-            self.create_message(kind=_("inventory"), title=item.name)
