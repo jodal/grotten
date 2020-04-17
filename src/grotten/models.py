@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from gettext import gettext as _
+from gettext import gettext as _, ngettext
 from typing import Callable, Dict, List, Optional
 
 from grotten import actions
@@ -131,7 +131,11 @@ class Game:
         self.create_message(
             kind=_("life"),
             title=_("You died"),
-            content=_("You have {lives} left.").format(lives=self.lives),
+            content=ngettext(
+                _("You have only {lives} life left."),
+                _("You have {lives} lives left."),
+                self.lives,
+            ).format(lives=self.lives),
         )
         if self.lives == 0:
             self.create_message(kind=_("game"), title=_("Game over"))

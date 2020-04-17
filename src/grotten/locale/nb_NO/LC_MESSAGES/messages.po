@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-17 01:59+0200\n"
+"POT-Creation-Date: 2020-04-17 03:15+0200\n"
 "PO-Revision-Date: 2020-04-16 00:01+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: nb_NO\n"
@@ -18,117 +18,121 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: src/grotten/actions.py:25
-msgid "Exit game"
+#: src/grotten/actions.py:22
+msgid "End game"
 msgstr "Avslutt spill"
 
-#: src/grotten/actions.py:36
+#: src/grotten/actions.py:30
 msgid "Go {direction}"
 msgstr "Gå {direction}"
 
-#: src/grotten/actions.py:47
+#: src/grotten/actions.py:38
 msgid "Pick up {item}"
 msgstr "Plukk opp {item}"
 
-#: src/grotten/actions.py:58
+#: src/grotten/actions.py:44
 msgid "Show inventory"
 msgstr "Vis inventar"
 
-#: src/grotten/cli.py:19
-msgid "Welcome to Grotten!"
-msgstr "Velkommen til Grotten!"
-
-#: src/grotten/cli.py:27
+#: src/grotten/cli.py:28
 msgid "Aborting"
 msgstr "Avbryter"
 
-#: src/grotten/cli.py:30
-msgid "Welcome back"
-msgstr "Velkommen tilbake"
-
-#: src/grotten/cli.py:32
-msgid "Game over"
-msgstr "Spill over"
-
-#: src/grotten/cli.py:56
-msgid "location"
-msgstr "sted"
-
-#: src/grotten/cli.py:61
-msgid "item"
-msgstr "ting"
-
-#: src/grotten/cli.py:73 src/grotten/cli.py:76
-msgid "inventory"
-msgstr "inventar"
-
-#: src/grotten/cli.py:73
-msgid "empty"
-msgstr "tomt"
-
-#: src/grotten/cli.py:78
-msgid "Press any key to close inventory ..."
-msgstr "Trykk en knapp for å lukke inventaret..."
-
-#: src/grotten/cli.py:82
+#: src/grotten/cli.py:44
 msgid "What do you want to do?"
 msgstr "Hva vil du gjøre?"
 
-#: src/grotten/cli.py:89
+#: src/grotten/cli.py:51
 msgid "Select"
 msgstr "Velg"
 
 #: src/grotten/enums.py:8
-msgid "North"
+msgid "north"
 msgstr "nordover"
 
 #: src/grotten/enums.py:9
-msgid "East"
+msgid "east"
 msgstr "østover"
 
 #: src/grotten/enums.py:10
-msgid "South"
+msgid "south"
 msgstr "sørover"
 
 #: src/grotten/enums.py:11
-msgid "West"
+msgid "west"
 msgstr "vestover"
 
-#: src/grotten/models.py:83 src/grotten/models.py:109
+#: src/grotten/models.py:87 src/grotten/models.py:141
+msgid "game"
+msgstr "spill"
+
+#: src/grotten/models.py:87
+msgid "Welcome back"
+msgstr "Velkommen tilbake"
+
+#: src/grotten/models.py:92 src/grotten/models.py:103
 msgid "action"
 msgstr "handling"
 
-#: src/grotten/models.py:84
+#: src/grotten/models.py:93
 msgid "Going {direction}"
 msgstr "Går {direction}"
 
-#: src/grotten/models.py:91
+#: src/grotten/models.py:104
+msgid "Picking up {item}"
+msgstr "Plukker opp {item}"
+
+#: src/grotten/models.py:110 src/grotten/models.py:116
+msgid "inventory"
+msgstr "inventar"
+
+#: src/grotten/models.py:111
+msgid "empty"
+msgstr "tomt"
+
+#: src/grotten/models.py:112
+msgid "The inventory is empty."
+msgstr "Inventaret er tomt."
+
+#: src/grotten/models.py:122
+msgid "location"
+msgstr "sted"
+
+#: src/grotten/models.py:127
+msgid "item"
+msgstr "gjenstand"
+
+#: src/grotten/models.py:132
 msgid "life"
 msgstr "liv"
 
-#: src/grotten/models.py:92
+#: src/grotten/models.py:133
 msgid "You died"
 msgstr "Du døde"
 
-#: src/grotten/models.py:93
-msgid "You have {lives} left."
-msgstr "Du har {lives} igjen."
+#: src/grotten/models.py:135
+msgid "You have only {lives} life left."
+msgstr "Du har bare {lives} liv igjen."
 
-#: src/grotten/models.py:100
+#: src/grotten/models.py:136
+msgid "You have {lives} lives left."
+msgstr "Du har {lives} liv igjen."
+
+#: src/grotten/models.py:141
+msgid "Game over"
+msgstr "Spill over"
+
+#: src/grotten/models.py:146
 msgid "level"
-msgstr "brett"
+msgstr "nivå"
 
-#: src/grotten/models.py:101
+#: src/grotten/models.py:147
 msgid "Restart"
-msgstr "Restart"
+msgstr "Omstart"
 
-#: src/grotten/models.py:102
+#: src/grotten/models.py:148
 msgid "You respawn at the beginning."
 msgstr "Du er tilbake på start."
-
-#: src/grotten/models.py:110
-msgid "Picking up {item}"
-msgstr "Plukker opp {item}"
 
 #: src/grotten/levels/level_1.py:16
 msgid "Entrance"
@@ -173,3 +177,4 @@ msgstr "Skatt"
 #: src/grotten/levels/level_1.py:36
 msgid "You found the treasure!"
 msgstr "Du fant skatten!"
+
