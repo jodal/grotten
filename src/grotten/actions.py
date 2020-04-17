@@ -15,11 +15,17 @@ class Action:
     def __str__(self) -> str:
         raise NotImplementedError
 
+    def is_meta_action(self) -> bool:
+        return False
+
 
 @dataclass
 class EndGame(Action):
     def __str__(self) -> str:
         return _("End game")
+
+    def is_meta_action(self) -> bool:
+        return True
 
 
 @dataclass
@@ -42,3 +48,6 @@ class PickUp(Action):
 class ShowInventory(Action):
     def __str__(self) -> str:
         return _("Show inventory")
+
+    def is_meta_action(self) -> bool:
+        return True

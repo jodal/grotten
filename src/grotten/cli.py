@@ -47,7 +47,9 @@ def select_action(actions: List[Action]) -> Action:
 
     for i, action in enumerate(actions, 1):
         click.secho(f"[{i}] ", nl=False, fg="yellow")
-        click.secho(str(action))
+        click.secho(
+            str(action), fg="white" if action.is_meta_action() else None
+        )
 
     num = click.prompt(
         click.style(_("Select"), fg="blue"),
