@@ -72,6 +72,21 @@ class Game:
 
     # --- Actions
 
+    def available_actions(self) -> List[actions.Action]:
+        result: List[actions.Action] = []
+
+        for item in self.location.items:
+            result.append(actions.PickUp(item=item))
+
+        for direction in Direction:
+            if direction in self.location.neighbors:
+                result.append(actions.Go(direction=direction))
+
+        result.append(actions.ShowInventory())
+        result.append(actions.EndGame())
+
+        return result
+
     def apply(self, action: actions.Action) -> None:
         if isinstance(action, actions.EndGame):
             return self.end_game()

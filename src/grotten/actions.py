@@ -42,19 +42,3 @@ class PickUp(Action):
 class ShowInventory(Action):
     def __str__(self) -> str:
         return _("Show inventory")
-
-
-def next_actions(game: Game) -> List[Action]:
-    actions: List[Action] = []
-
-    for item in game.location.items:
-        actions.append(PickUp(item=item))
-
-    for direction in Direction:
-        if direction in game.location.neighbors:
-            actions.append(Go(direction=direction))
-
-    actions.append(ShowInventory())
-    actions.append(EndGame())
-
-    return actions

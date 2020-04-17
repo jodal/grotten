@@ -1,3 +1,4 @@
+from grotten import actions
 from grotten.enums import Direction
 from grotten.models import Game, Item, Message
 
@@ -7,6 +8,33 @@ def test_loads_level_1_by_default():
 
     assert game.level.number == 1
     assert game.location == game.level.start
+
+
+def test_available_actions(game):
+    result = game.available_actions()
+
+    assert result == [
+        actions.Go(direction=Direction.NORTH),
+        actions.Go(direction=Direction.WEST),
+        actions.ShowInventory(),
+        actions.EndGame(),
+    ]
+
+
+def test_available_actions_with_inventory(game, level_1):
+    game.location = level_1.locations["skeletons"]
+    assert len(game.location.items) == 1
+    item = game.location.items[0]
+
+    result = game.available_actions()
+
+    assert result == [
+        actions.PickUp(item=item),
+        actions.Go(direction=Direction.NORTH),
+        actions.Go(direction=Direction.EAST),
+        actions.ShowInventory(),
+        actions.EndGame(),
+    ]
 
 
 def test_end_game(game):

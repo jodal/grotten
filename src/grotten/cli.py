@@ -6,7 +6,6 @@ from typing import List, TYPE_CHECKING
 import click
 
 from grotten import __version__
-from grotten.actions import next_actions
 from grotten.models import Game
 
 if TYPE_CHECKING:
@@ -24,7 +23,7 @@ def main() -> None:
         while game.running and game.lives > 0:
             click.clear()
             show_messages(game.pop_messages())
-            action = select_action(next_actions(game))
+            action = select_action(game.available_actions())
             game.apply(action)
     except click.exceptions.Abort:
         click.echo()
