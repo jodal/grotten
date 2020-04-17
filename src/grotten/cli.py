@@ -4,7 +4,6 @@ from gettext import gettext as _
 from typing import List, TYPE_CHECKING
 
 import click
-from click import secho as p
 
 from grotten.actions import next_actions
 from grotten.models import Game
@@ -25,8 +24,8 @@ def main() -> None:
             action = select_action(next_actions(game))
             action.apply(game)
     except click.exceptions.Abort:
-        p()
-        p(_("Aborting"), bold=True, fg="yellow")
+        click.echo()
+        click.secho(_("Aborting"), bold=True, fg="yellow")
 
     click.clear()
     show_messages(game.pop_messages())
@@ -34,25 +33,25 @@ def main() -> None:
 
 def show_messages(messages: List[Message]) -> None:
     for message in messages:
-        p(f"[{message.kind}] ", nl=False, fg="magenta")
-        p(message.title, bold=True)
+        click.secho(f"[{message.kind}] ", nl=False, fg="magenta")
+        click.secho(message.title, bold=True)
         if message.content is not None:
-            p(message.content)
-        p()
+            click.secho(message.content)
+        click.echo()
 
 
 def select_action(actions: List[Action]) -> Action:
-    p(_("What do you want to do?"), fg="blue")
+    click.secho(_("What do you want to do?"), fg="blue")
 
     for i, action in enumerate(actions, 1):
-        p(f"[{i}] ", nl=False, fg="yellow")
-        p(str(action))
+        click.secho(f"[{i}] ", nl=False, fg="yellow")
+        click.secho(str(action))
 
     num = click.prompt(
         click.style(_("Select"), fg="blue"),
         type=click.IntRange(min=1, max=len(actions)),
     )
-    p()
+    click.echo()
 
     action = actions[num - 1]
     return action
