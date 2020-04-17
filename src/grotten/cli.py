@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from grotten.models import Message
 
 
+@click.command()
 def main() -> None:
     game = Game.create()
     game.describe_location()
