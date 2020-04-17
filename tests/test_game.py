@@ -93,7 +93,7 @@ def test_go_to_location_with_creature(game, level_1):
     game.go(Direction.NORTH)
 
     assert game.location == level_1.locations["dragon_lair"]
-    assert Message(kind=Kind.CREATURE, title="dragon") in game.messages
+    assert Message(kind=Kind.CREATURE, title="Green Dragon") in game.messages
 
 
 def test_attack_with_bare_hands(game, level_1):

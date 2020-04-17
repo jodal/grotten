@@ -24,14 +24,14 @@ pit = Location(
 skeletons = Location(
     name=_("Skeletons"),
     description=_("You stumble upon the skeletons of three humans and a dog."),
-    items=[Item(name=_("sword"), attack_strength=8)],
+    items=[Item(name=_("Small Sword"), attack_strength=8)],
 )
 dragon_lair = Location(
     name=_("Dragon lair"),
     description=_(
         "There is large green dragon sleeping on the floor in front of you."
     ),
-    creatures=[Creature(name=_("dragon"), strength=12)],
+    creatures=[Creature(name=_("Green Dragon"), strength=12)],
 )
 treasure = Location(
     name=_("Treasure"), description=_("You found the treasure!"),

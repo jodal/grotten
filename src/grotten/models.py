@@ -83,7 +83,7 @@ class Game:
     # --- Inventory use
 
     def weapon(self) -> Item:
-        best_weapon = Item(_("bare hands"), attack_strength=3)
+        best_weapon = Item(_("Bare Hands"), attack_strength=3)
         for item in self.inventory:
             if item.attack_strength > best_weapon.attack_strength:
                 best_weapon = item
@@ -158,7 +158,7 @@ class Game:
             self.create_message(
                 kind=Kind.ACTION,
                 title=_("You won"),
-                content=_("You defeated the {creature}").format(
+                content=_("You defeated {creature}").format(
                     creature=creature.name
                 ),
             )
@@ -167,7 +167,7 @@ class Game:
             self.create_message(
                 kind=Kind.ACTION,
                 title=_("You lost"),
-                content=_("You lost the battle with the {creature}.").format(
+                content=_("You lost the battle with {creature}.").format(
                     creature=creature.name
                 ),
             )

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-17 11:08+0200\n"
+"POT-Creation-Date: 2020-04-17 11:20+0200\n"
 "PO-Revision-Date: 2020-04-16 00:01+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: nb_NO\n"
@@ -99,8 +99,8 @@ msgid "location"
 msgstr "sted"
 
 #: src/grotten/models.py:86
-msgid "bare hands"
-msgstr "bare hendene"
+msgid "Bare Hands"
+msgstr "Bare Hendene"
 
 #: src/grotten/models.py:126
 msgid "Welcome back"
@@ -123,50 +123,50 @@ msgid "You won"
 msgstr "Du vant"
 
 #: src/grotten/models.py:161
-msgid "You defeated the {creature}"
-msgstr "Du beseiret {creature}"
+msgid "You defeated {creature}"
+msgstr "Du bekjempet {creature}"
 
-#: src/grotten/models.py:168
+#: src/grotten/models.py:169
 msgid "You lost"
 msgstr "Du tapte"
 
-#: src/grotten/models.py:169
-msgid "You lost the battle with the {creature}."
+#: src/grotten/models.py:170
+msgid "You lost the battle with {creature}."
 msgstr "Du tapte kampen mot {creature}."
 
-#: src/grotten/models.py:181
+#: src/grotten/models.py:183
 msgid "Picking up {item}"
 msgstr "Plukker opp {item}"
 
-#: src/grotten/models.py:188
+#: src/grotten/models.py:190
 msgid "empty"
 msgstr "tomt"
 
-#: src/grotten/models.py:189
+#: src/grotten/models.py:191
 msgid "The inventory is empty."
 msgstr "Inventaret er tomt."
 
-#: src/grotten/models.py:214
+#: src/grotten/models.py:216
 msgid "You died"
 msgstr "Du døde"
 
-#: src/grotten/models.py:216
+#: src/grotten/models.py:218
 msgid "You have only {lives} life left."
 msgstr "Du har bare {lives} liv igjen."
 
-#: src/grotten/models.py:217
+#: src/grotten/models.py:219
 msgid "You have {lives} lives left."
 msgstr "Du har {lives} liv igjen."
 
-#: src/grotten/models.py:222
+#: src/grotten/models.py:224
 msgid "Game over"
 msgstr "Spill over"
 
-#: src/grotten/models.py:228
+#: src/grotten/models.py:230
 msgid "Restart"
 msgstr "Omstart"
 
-#: src/grotten/models.py:229
+#: src/grotten/models.py:231
 msgid "You respawn at the beginning."
 msgstr "Du er tilbake på start."
 
@@ -195,8 +195,8 @@ msgid "You stumble upon the skeletons of three humans and a dog."
 msgstr "Du snubler over skjelettene etter tre mennesker og en hund."
 
 #: src/grotten/levels/level_1.py:27
-msgid "sword"
-msgstr "sverd"
+msgid "Small Sword"
+msgstr "Lite Sverd"
 
 #: src/grotten/levels/level_1.py:30
 msgid "Dragon lair"
@@ -207,8 +207,8 @@ msgid "There is large green dragon sleeping on the floor in front of you."
 msgstr "Det er en stor grønn drage som sover på gulvet foran deg."
 
 #: src/grotten/levels/level_1.py:34
-msgid "dragon"
-msgstr "drage"
+msgid "Green Dragon"
+msgstr "Grønndrage"
 
 #: src/grotten/levels/level_1.py:37
 msgid "Treasure"

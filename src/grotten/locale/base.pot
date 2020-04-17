@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-17 11:08+0200\n"
+"POT-Creation-Date: 2020-04-17 11:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,7 +98,7 @@ msgid "location"
 msgstr ""
 
 #: src/grotten/models.py:86
-msgid "bare hands"
+msgid "Bare Hands"
 msgstr ""
 
 #: src/grotten/models.py:126
@@ -120,50 +120,50 @@ msgid "You won"
 msgstr ""
 
 #: src/grotten/models.py:161
-msgid "You defeated the {creature}"
-msgstr ""
-
-#: src/grotten/models.py:168
-msgid "You lost"
+msgid "You defeated {creature}"
 msgstr ""
 
 #: src/grotten/models.py:169
-msgid "You lost the battle with the {creature}."
+msgid "You lost"
 msgstr ""
 
-#: src/grotten/models.py:181
+#: src/grotten/models.py:170
+msgid "You lost the battle with {creature}."
+msgstr ""
+
+#: src/grotten/models.py:183
 msgid "Picking up {item}"
 msgstr ""
 
-#: src/grotten/models.py:188
+#: src/grotten/models.py:190
 msgid "empty"
 msgstr ""
 
-#: src/grotten/models.py:189
+#: src/grotten/models.py:191
 msgid "The inventory is empty."
 msgstr ""
 
-#: src/grotten/models.py:214
+#: src/grotten/models.py:216
 msgid "You died"
 msgstr ""
 
-#: src/grotten/models.py:216
+#: src/grotten/models.py:218
 msgid "You have only {lives} life left."
 msgstr ""
 
-#: src/grotten/models.py:217
+#: src/grotten/models.py:219
 msgid "You have {lives} lives left."
 msgstr ""
 
-#: src/grotten/models.py:222
+#: src/grotten/models.py:224
 msgid "Game over"
 msgstr ""
 
-#: src/grotten/models.py:228
+#: src/grotten/models.py:230
 msgid "Restart"
 msgstr ""
 
-#: src/grotten/models.py:229
+#: src/grotten/models.py:231
 msgid "You respawn at the beginning."
 msgstr ""
 
@@ -192,7 +192,7 @@ msgid "You stumble upon the skeletons of three humans and a dog."
 msgstr ""
 
 #: src/grotten/levels/level_1.py:27
-msgid "sword"
+msgid "Small Sword"
 msgstr ""
 
 #: src/grotten/levels/level_1.py:30
@@ -204,7 +204,7 @@ msgid "There is large green dragon sleeping on the floor in front of you."
 msgstr ""
 
 #: src/grotten/levels/level_1.py:34
-msgid "dragon"
+msgid "Green Dragon"
 msgstr ""
 
 #: src/grotten/levels/level_1.py:37
