@@ -21,7 +21,11 @@ def test_end_game(game):
 def test_go_str():
     action = actions.Go(direction=Direction.NORTH)
 
-    assert str(action) == "Go North"
+    assert str(action) == "Go north"
+
+    action = actions.Go(direction=Direction.EAST)
+
+    assert str(action) == "Go east"
 
 
 def test_go_apply(game, level_1):

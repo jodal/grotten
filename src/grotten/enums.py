@@ -5,10 +5,10 @@ from gettext import gettext as _
 
 
 class Direction(Enum):
-    NORTH = _("North")
-    EAST = _("East")
-    SOUTH = _("South")
-    WEST = _("West")
+    NORTH = _("north")
+    EAST = _("east")
+    SOUTH = _("south")
+    WEST = _("west")
 
     def __neg__(self) -> Direction:
         return {
