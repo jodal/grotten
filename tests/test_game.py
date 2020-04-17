@@ -10,6 +10,24 @@ def test_loads_level_1_by_default():
     assert game.location == game.level.start
 
 
+def test_create_message(game):
+    game.create_message(kind="a_kind", title="A title", content="Some content")
+
+    assert game.messages == [
+        Message(kind="a_kind", title="A title", content="Some content")
+    ]
+
+
+def test_pop_messages(game):
+    game.create_message(kind="a_kind", title="A title")
+    assert len(game.messages) == 1
+
+    messages = game.pop_messages()
+
+    assert game.messages == []
+    assert messages == [Message(kind="a_kind", title="A title", content=None)]
+
+
 def test_available_actions(game):
     result = game.available_actions()
 
@@ -47,24 +65,6 @@ def test_end_game(game):
     assert game.messages[0].title == "Welcome back"
 
 
-def test_pop_messages(game):
-    game.create_message(kind="a_kind", title="A title")
-    assert len(game.messages) == 1
-
-    messages = game.pop_messages()
-
-    assert game.messages == []
-    assert messages == [Message(kind="a_kind", title="A title", content=None)]
-
-
-def test_create_message(game):
-    game.create_message(kind="a_kind", title="A title", content="Some content")
-
-    assert game.messages == [
-        Message(kind="a_kind", title="A title", content="Some content")
-    ]
-
-
 def test_go(game, level_1):
     assert game.location == level_1.locations["entrance"]
 
@@ -99,6 +99,28 @@ def test_pick_up(game, level_1):
     assert item in game.inventory
 
 
+def test_show_inventory_when_empty(game):
+    game.show_inventory()
+
+    assert len(game.messages) == 1
+    assert game.messages == [
+        Message(
+            kind="inventory", title="empty", content="The inventory is empty."
+        )
+    ]
+
+
+def test_show_inventory_with_content(game):
+    game.inventory.append(Item(name="Sword"))
+
+    game.show_inventory()
+
+    assert len(game.messages) == 1
+    assert game.messages == [
+        Message(kind="inventory", title="Sword", content=None)
+    ]
+
+
 def test_die_when_more_lives_left(game):
     lives_before = game.lives
     assert lives_before > 1
@@ -129,25 +151,3 @@ def test_restart_level(game, level_1):
     assert game.location == level_1.start
     assert len(game.messages) == 1
     assert game.messages[0].title == "Restart"
-
-
-def test_show_inventory_when_empty(game):
-    game.show_inventory()
-
-    assert len(game.messages) == 1
-    assert game.messages == [
-        Message(
-            kind="inventory", title="empty", content="The inventory is empty."
-        )
-    ]
-
-
-def test_show_inventory_with_content(game):
-    game.inventory.append(Item(name="Sword"))
-
-    game.show_inventory()
-
-    assert len(game.messages) == 1
-    assert game.messages == [
-        Message(kind="inventory", title="Sword", content=None)
-    ]
