@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-17 10:23+0200\n"
+"POT-Creation-Date: 2020-04-17 11:08+0200\n"
 "PO-Revision-Date: 2020-04-16 00:01+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: nb_NO\n"
@@ -26,7 +26,7 @@ msgstr "Avslutt spill"
 msgid "Go {direction}"
 msgstr "Gå {direction}"
 
-#: src/grotten/actions.py:44
+#: src/grotten/actions.py:44 src/grotten/models.py:143
 msgid "Attack {creature}"
 msgstr "Angrip {creature}"
 
@@ -98,47 +98,75 @@ msgstr "liv"
 msgid "location"
 msgstr "sted"
 
-#: src/grotten/models.py:108
+#: src/grotten/models.py:86
+msgid "bare hands"
+msgstr "bare hendene"
+
+#: src/grotten/models.py:126
 msgid "Welcome back"
 msgstr "Velkommen tilbake"
 
-#: src/grotten/models.py:114
+#: src/grotten/models.py:132
 msgid "Going {direction}"
 msgstr "Går {direction}"
 
-#: src/grotten/models.py:125
+#: src/grotten/models.py:144
+msgid ""
+"You attack {creature} ({creature_strength}) with {weapon} "
+"({weapon_strength})."
+msgstr ""
+"Du angriper {creature} ({creature_strength}) med {weapon} "
+"({weapon_strength})."
+
+#: src/grotten/models.py:160
+msgid "You won"
+msgstr "Du vant"
+
+#: src/grotten/models.py:161
+msgid "You defeated the {creature}"
+msgstr "Du beseiret {creature}"
+
+#: src/grotten/models.py:168
+msgid "You lost"
+msgstr "Du tapte"
+
+#: src/grotten/models.py:169
+msgid "You lost the battle with the {creature}."
+msgstr "Du tapte kampen mot {creature}."
+
+#: src/grotten/models.py:181
 msgid "Picking up {item}"
 msgstr "Plukker opp {item}"
 
-#: src/grotten/models.py:132
+#: src/grotten/models.py:188
 msgid "empty"
 msgstr "tomt"
 
-#: src/grotten/models.py:133
+#: src/grotten/models.py:189
 msgid "The inventory is empty."
 msgstr "Inventaret er tomt."
 
-#: src/grotten/models.py:156
+#: src/grotten/models.py:214
 msgid "You died"
 msgstr "Du døde"
 
-#: src/grotten/models.py:158
+#: src/grotten/models.py:216
 msgid "You have only {lives} life left."
 msgstr "Du har bare {lives} liv igjen."
 
-#: src/grotten/models.py:159
+#: src/grotten/models.py:217
 msgid "You have {lives} lives left."
 msgstr "Du har {lives} liv igjen."
 
-#: src/grotten/models.py:164
+#: src/grotten/models.py:222
 msgid "Game over"
 msgstr "Spill over"
 
-#: src/grotten/models.py:170
+#: src/grotten/models.py:228
 msgid "Restart"
 msgstr "Omstart"
 
-#: src/grotten/models.py:171
+#: src/grotten/models.py:229
 msgid "You respawn at the beginning."
 msgstr "Du er tilbake på start."
 

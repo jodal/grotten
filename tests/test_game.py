@@ -1,3 +1,5 @@
+from fractions import Fraction
+
 from grotten import actions
 from grotten.enums import Direction, Kind
 from grotten.models import Game, Item, Message
@@ -92,6 +94,29 @@ def test_go_to_location_with_creature(game, level_1):
 
     assert game.location == level_1.locations["dragon_lair"]
     assert Message(kind=Kind.CREATURE, title="dragon") in game.messages
+
+
+def test_attack_with_bare_hands(game, level_1):
+    game.location = level_1.locations["dragon_lair"]
+    creature = game.location.creatures[0]
+    assert creature.strength == 12
+    assert game.weapon().attack_strength == 3
+
+    winning_odds = game.attack(creature)
+
+    assert winning_odds == Fraction(3, 12)
+
+
+def test_attack_with_sword(game, level_1):
+    game.location = level_1.locations["dragon_lair"]
+    game.inventory.append(Item(name="sword", attack_strength=8))
+    creature = game.location.creatures[0]
+    assert creature.strength == 12
+    assert game.weapon().attack_strength == 8
+
+    winning_odds = game.attack(creature)
+
+    assert winning_odds == Fraction(8, 12)
 
 
 def test_pick_up(game, level_1):

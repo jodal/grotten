@@ -37,6 +37,14 @@ class Go(Action):
 
 
 @dataclass
+class Attack(Action):
+    creature: Creature
+
+    def __str__(self) -> str:
+        return _("Attack {creature}").format(creature=self.creature.name)
+
+
+@dataclass
 class PickUp(Action):
     item: Item
 
