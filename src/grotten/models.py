@@ -5,7 +5,7 @@ from gettext import gettext as _, ngettext
 from typing import Callable, Dict, List, Optional
 
 from grotten import actions
-from grotten.enums import Direction
+from grotten.enums import Direction, Kind
 from grotten.levels import load_level
 
 
@@ -38,7 +38,7 @@ class Level:
 
 @dataclass
 class Message:
-    kind: str
+    kind: Kind
     title: str
     content: Optional[str]
 
@@ -59,7 +59,7 @@ class Game:
         return cls(level=level, location=level.start)
 
     def create_message(
-        self, *, kind: str, title: str, content: Optional[str] = None
+        self, *, kind: Kind, title: str, content: Optional[str] = None
     ) -> Message:
         message = Message(kind=kind, title=title, content=content)
         self.messages.append(message)
@@ -99,13 +99,13 @@ class Game:
 
     def end_game(self) -> None:
         self.running = False
-        self.create_message(kind=_("game"), title=_("Welcome back"))
+        self.create_message(kind=Kind.GAME, title=_("Welcome back"))
 
     def go(self, direction: Direction) -> None:
         self.location = self.location.neighbors[direction]
         self.create_message(
-            kind=_("action"),
-            title=_("Going {direction}").format(direction=_(direction.value)),
+            kind=Kind.ACTION,
+            title=_("Going {direction}").format(direction=_(direction)),
         )
         self.describe_location()
         if self.location.effect is not None:
@@ -115,36 +115,36 @@ class Game:
         self.location.items.remove(item)
         self.inventory = sorted(self.inventory + [item])
         self.create_message(
-            kind=_("action"),
+            kind=Kind.ACTION,
             title=_("Picking up {item}").format(item=item.name),
         )
 
     def show_inventory(self) -> None:
         if not self.inventory:
             self.create_message(
-                kind=_("inventory"),
+                kind=Kind.INVENTORY,
                 title=_("empty"),
                 content=_("The inventory is empty."),
             )
 
         for item in self.inventory:
-            self.create_message(kind=_("inventory"), title=item.name)
+            self.create_message(kind=Kind.INVENTORY, title=item.name)
 
     # --- Action building blocks
 
     def describe_location(self) -> None:
         self.create_message(
-            kind=_("location"),
+            kind=Kind.LOCATION,
             title=self.location.name,
             content=self.location.description,
         )
         for item in self.location.items:
-            self.create_message(kind=_("item"), title=item.name)
+            self.create_message(kind=Kind.ITEM, title=item.name)
 
     def die(self) -> None:
         self.lives -= 1
         self.create_message(
-            kind=_("life"),
+            kind=Kind.LIFE,
             title=_("You died"),
             content=ngettext(
                 _("You have only {lives} life left."),
@@ -153,12 +153,12 @@ class Game:
             ).format(lives=self.lives),
         )
         if self.lives == 0:
-            self.create_message(kind=_("game"), title=_("Game over"))
+            self.create_message(kind=Kind.GAME, title=_("Game over"))
 
     def restart_level(self) -> None:
         self.location = self.level.start
         self.create_message(
-            kind=_("level"),
+            kind=Kind.LEVEL,
             title=_("Restart"),
             content=_("You respawn at the beginning."),
         )

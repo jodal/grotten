@@ -35,7 +35,7 @@ def main() -> None:
 
 def show_messages(messages: List[Message]) -> None:
     for message in messages:
-        click.secho(f"[{message.kind}] ", nl=False, fg="magenta")
+        click.secho(f"[{_(message.kind)}] ", nl=False, fg="magenta")
         click.secho(message.title, bold=True)
         if message.content is not None:
             click.secho(message.content)

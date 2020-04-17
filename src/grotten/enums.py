@@ -4,7 +4,7 @@ from enum import Enum
 from gettext import gettext as _
 
 
-class Direction(Enum):
+class Direction(str, Enum):
     NORTH = _("north")
     EAST = _("east")
     SOUTH = _("south")
@@ -17,3 +17,13 @@ class Direction(Enum):
             Direction.SOUTH: Direction.NORTH,
             Direction.WEST: Direction.EAST,
         }[self]
+
+
+class Kind(str, Enum):
+    ACTION = _("action")
+    GAME = _("game")
+    INVENTORY = _("inventory")
+    ITEM = _("item")
+    LEVEL = _("level")
+    LIFE = _("life")
+    LOCATION = _("location")
