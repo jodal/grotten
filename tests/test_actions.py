@@ -3,22 +3,13 @@ from grotten.actions import next_actions
 from grotten.models import Direction, Item
 
 
-def test_end_game_str():
+def test_end_game():
     action = actions.EndGame()
 
     assert str(action) == "End game"
 
 
-def test_end_game(game):
-    action = actions.EndGame()
-    assert game.running is True
-
-    action.apply(game)
-
-    assert game.running is False
-
-
-def test_go_str():
+def test_go():
     action = actions.Go(direction=Direction.NORTH)
 
     assert str(action) == "Go north"
@@ -28,46 +19,16 @@ def test_go_str():
     assert str(action) == "Go east"
 
 
-def test_go_apply(game, level_1):
-    action = actions.Go(direction=Direction.WEST)
-    assert game.location == level_1.locations["entrance"]
-
-    action.apply(game)
-
-    assert game.location == level_1.locations["skeletons"]
-
-
-def test_pick_up_str():
+def test_pick_up():
     action = actions.PickUp(item=Item(name="Sword"))
 
     assert str(action) == "Pick up Sword"
 
 
-def test_pick_up_apply(game, level_1):
-    game.location = level_1.locations["skeletons"]
-    item = game.location.items[0]
-    action = actions.PickUp(item=item)
-
-    assert len(game.location.items) == 1
-    assert len(game.inventory) == 0
-
-    action.apply(game)
-
-    assert len(game.location.items) == 0
-    assert len(game.inventory) == 1
-    assert item in game.inventory
-
-
-def test_show_inventory_str():
+def test_show_inventory():
     action = actions.ShowInventory()
 
     assert str(action) == "Show inventory"
-
-
-def test_show_inventory_apply(game):
-    action = actions.ShowInventory()
-
-    action.apply(game)
 
 
 def test_next_actions(game):

@@ -22,7 +22,7 @@ def main() -> None:
             click.clear()
             show_messages(game.pop_messages())
             action = select_action(next_actions(game))
-            action.apply(game)
+            game.apply(action)
     except click.exceptions.Abort:
         click.echo()
         click.secho(_("Aborting"), bold=True, fg="yellow")

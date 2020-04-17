@@ -15,17 +15,11 @@ class Action:
     def __str__(self) -> str:
         raise NotImplementedError
 
-    def apply(self, game: Game) -> None:
-        pass
-
 
 @dataclass
 class EndGame(Action):
     def __str__(self) -> str:
         return _("End game")
-
-    def apply(self, game: Game) -> None:
-        game.end_game()
 
 
 @dataclass
@@ -35,9 +29,6 @@ class Go(Action):
     def __str__(self) -> str:
         return _("Go {direction}").format(direction=_(self.direction.value))
 
-    def apply(self, game: Game) -> None:
-        game.go(self.direction)
-
 
 @dataclass
 class PickUp(Action):
@@ -46,17 +37,11 @@ class PickUp(Action):
     def __str__(self) -> str:
         return _("Pick up {item}").format(item=self.item.name)
 
-    def apply(self, game: Game) -> None:
-        game.pick_up(self.item)
-
 
 @dataclass
 class ShowInventory(Action):
     def __str__(self) -> str:
         return _("Show inventory")
-
-    def apply(self, game: Game) -> None:
-        game.show_inventory()
 
 
 def next_actions(game: Game) -> List[Action]:

@@ -4,6 +4,7 @@ from dataclasses import dataclass, field
 from gettext import gettext as _
 from typing import Callable, Dict, List, Optional
 
+from grotten import actions
 from grotten.enums import Direction
 from grotten.levels import load_level
 
@@ -56,6 +57,16 @@ class Game:
         if level is None:
             level = load_level(1)
         return cls(level=level, location=level.start)
+
+    def apply(self, action: actions.Action) -> None:
+        if isinstance(action, actions.EndGame):
+            return self.end_game()
+        if isinstance(action, actions.Go):
+            return self.go(action.direction)
+        if isinstance(action, actions.PickUp):
+            return self.pick_up(action.item)
+        if isinstance(action, actions.ShowInventory):
+            return self.show_inventory()
 
     def end_game(self) -> None:
         self.running = False
