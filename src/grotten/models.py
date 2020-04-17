@@ -43,18 +43,13 @@ class Message:
 
 
 @dataclass
-class Tick:
-    messages: List[Message] = field(default_factory=list)
-
-
-@dataclass
 class Game:
     level: Level
     location: Location
     inventory: List[Item] = field(default_factory=list)
     lives: int = 3
     running: bool = True
-    tick: Tick = field(default_factory=Tick)
+    messages: List[Message] = field(default_factory=list)
 
     @classmethod
     def create(cls, *, level: Optional[Level] = None) -> Game:
@@ -65,14 +60,16 @@ class Game:
     def end_game(self) -> None:
         self.running = False
 
-    def begin_tick(self) -> None:
-        self.tick = Tick()
+    def pop_messages(self) -> List[Message]:
+        messages = self.messages
+        self.messages = []
+        return messages
 
     def create_message(
         self, *, kind: str, title: str, content: Optional[str] = None
     ) -> Message:
         message = Message(kind=kind, title=title, content=content)
-        self.tick.messages.append(message)
+        self.messages.append(message)
         return message
 
     def go(self, direction: Direction) -> None:

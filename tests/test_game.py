@@ -17,19 +17,20 @@ def test_end_game(game):
     assert not game.running
 
 
-def test_begin_tick(game):
+def test_pop_messages(game):
     game.create_message(kind="a_kind", title="A title")
-    assert len(game.tick.messages) == 1
+    assert len(game.messages) == 1
 
-    game.begin_tick()
+    messages = game.pop_messages()
 
-    assert game.tick.messages == []
+    assert game.messages == []
+    assert messages == [Message(kind="a_kind", title="A title", content=None)]
 
 
 def test_create_message(game):
     game.create_message(kind="a_kind", title="A title", content="Some content")
 
-    assert game.tick.messages == [
+    assert game.messages == [
         Message(kind="a_kind", title="A title", content="Some content")
     ]
 
@@ -40,9 +41,9 @@ def test_go(game, level_1):
     game.go(Direction.WEST)
 
     assert game.location == level_1.locations["skeletons"]
-    assert len(game.tick.messages) >= 2
-    assert game.tick.messages[0].title == "Going west"
-    assert game.tick.messages[1].title == "Skeletons"
+    assert len(game.messages) >= 2
+    assert game.messages[0].title == "Going west"
+    assert game.messages[1].title == "Skeletons"
 
 
 def test_go_with_new_location_effect(game, level_1):
@@ -75,8 +76,8 @@ def test_die_when_more_lives_left(game):
     game.die()
 
     assert game.lives == lives_before - 1
-    assert len(game.tick.messages) == 1
-    assert game.tick.messages[0].title == "You died"
+    assert len(game.messages) == 1
+    assert game.messages[0].title == "You died"
 
 
 def test_die_when_running_out_of_lives(game):
@@ -85,8 +86,8 @@ def test_die_when_running_out_of_lives(game):
     game.die()
 
     assert game.lives == 0
-    assert len(game.tick.messages) == 1
-    assert game.tick.messages[0].title == "You died"
+    assert len(game.messages) == 1
+    assert game.messages[0].title == "You died"
 
 
 def test_restart_level(game, level_1):
@@ -95,15 +96,15 @@ def test_restart_level(game, level_1):
     game.restart_level()
 
     assert game.location == level_1.start
-    assert len(game.tick.messages) == 1
-    assert game.tick.messages[0].title == "Restart"
+    assert len(game.messages) == 1
+    assert game.messages[0].title == "Restart"
 
 
 def test_show_inventory_when_empty(game):
     game.show_inventory()
 
-    assert len(game.tick.messages) == 1
-    assert game.tick.messages == [
+    assert len(game.messages) == 1
+    assert game.messages == [
         Message(
             kind="inventory", title="empty", content="The inventory is empty."
         )
@@ -115,7 +116,7 @@ def test_show_inventory_with_content(game):
 
     game.show_inventory()
 
-    assert len(game.tick.messages) == 1
-    assert game.tick.messages == [
+    assert len(game.messages) == 1
+    assert game.messages == [
         Message(kind="inventory", title="Sword", content=None)
     ]

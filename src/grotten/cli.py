@@ -33,9 +33,8 @@ def main() -> None:
 
 def tick(game: Game) -> None:
     click.clear()
-    show_messages(game.tick.messages)
 
-    game.begin_tick()
+    show_messages(game.pop_messages())
 
     action = select_action(next_actions(game))
     action.apply(game)
