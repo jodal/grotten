@@ -20,21 +20,16 @@ def main() -> None:
 
     try:
         while game.running and game.lives > 0:
-            tick(game)
+            click.clear()
+            show_messages(game.pop_messages())
+            action = select_action(next_actions(game))
+            action.apply(game)
     except click.exceptions.Abort:
         p()
         p(_("Aborting"), bold=True, fg="yellow")
 
     click.clear()
     show_messages(game.pop_messages())
-
-
-def tick(game: Game) -> None:
-    click.clear()
-    show_messages(game.pop_messages())
-
-    action = select_action(next_actions(game))
-    action.apply(game)
 
 
 def show_messages(messages: List[Message]) -> None:
