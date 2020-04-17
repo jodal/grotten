@@ -85,6 +85,15 @@ def test_go_with_new_location_effect(game, level_1):
     assert game.lives == lives_before - 1
 
 
+def test_go_to_location_with_creature(game, level_1):
+    game.location = level_1.locations["skeletons"]
+
+    game.go(Direction.NORTH)
+
+    assert game.location == level_1.locations["dragon_lair"]
+    assert Message(kind=Kind.CREATURE, title="dragon") in game.messages
+
+
 def test_pick_up(game, level_1):
     game.location = level_1.locations["skeletons"]
     item = game.location.items[0]

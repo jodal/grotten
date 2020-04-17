@@ -10,6 +10,11 @@ from grotten.levels import load_level
 
 
 @dataclass(order=True)
+class Creature:
+    name: str
+
+
+@dataclass(order=True)
 class Item:
     name: str
 
@@ -21,6 +26,7 @@ class Location:
     neighbors: Dict[Direction, Location] = field(
         default_factory=dict, repr=False
     )
+    creatures: List[Creature] = field(default_factory=list, repr=False)
     items: List[Item] = field(default_factory=list, repr=False)
     effect: Optional[Callable[[Game], None]] = field(default=None, repr=False)
 
@@ -138,6 +144,10 @@ class Game:
             title=self.location.name,
             content=self.location.description,
         )
+
+        for creature in self.location.creatures:
+            self.create_message(kind=Kind.CREATURE, title=creature.name)
+
         for item in self.location.items:
             self.create_message(kind=Kind.ITEM, title=item.name)
 

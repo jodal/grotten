@@ -21,6 +21,7 @@ class Direction(str, Enum):
 
 class Kind(str, Enum):
     ACTION = _("action")
+    CREATURE = _("creature")
     GAME = _("game")
     INVENTORY = _("inventory")
     ITEM = _("item")

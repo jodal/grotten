@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING
 from grotten.enums import Direction
 
 if TYPE_CHECKING:
-    from grotten.models import Item
+    from grotten.models import Creature, Item
 
 
 @dataclass
