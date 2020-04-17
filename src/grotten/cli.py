@@ -25,15 +25,12 @@ def main() -> None:
         p()
         p(_("Aborting"), bold=True, fg="yellow")
 
-    if game.running is False:
-        p(_("Welcome back"), bold=True)
-    if game.lives == 0:
-        p(_("Game over"), bold=True, fg="red")
+    click.clear()
+    show_messages(game.pop_messages())
 
 
 def tick(game: Game) -> None:
     click.clear()
-
     show_messages(game.pop_messages())
 
     action = select_action(next_actions(game))

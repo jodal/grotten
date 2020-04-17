@@ -59,6 +59,7 @@ class Game:
 
     def end_game(self) -> None:
         self.running = False
+        self.create_message(kind=_("game"), title=_("Welcome back"))
 
     def pop_messages(self) -> List[Message]:
         messages = self.messages
@@ -98,6 +99,8 @@ class Game:
             title=_("You died"),
             content=_("You have {lives} left.").format(lives=self.lives),
         )
+        if self.lives == 0:
+            self.create_message(kind=_("game"), title=_("Game over"))
 
     def restart_level(self) -> None:
         self.location = self.level.start

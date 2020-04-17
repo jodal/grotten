@@ -15,6 +15,8 @@ def test_end_game(game):
     game.end_game()
 
     assert not game.running
+    assert len(game.messages) == 1
+    assert game.messages[0].title == "Welcome back"
 
 
 def test_pop_messages(game):
@@ -86,8 +88,9 @@ def test_die_when_running_out_of_lives(game):
     game.die()
 
     assert game.lives == 0
-    assert len(game.messages) == 1
+    assert len(game.messages) == 2
     assert game.messages[0].title == "You died"
+    assert game.messages[1].title == "Game over"
 
 
 def test_restart_level(game, level_1):
