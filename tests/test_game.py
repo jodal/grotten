@@ -1,5 +1,5 @@
 from grotten import actions
-from grotten.enums import Direction
+from grotten.enums import Direction, Kind
 from grotten.models import Game, Item, Message
 
 
@@ -11,21 +11,21 @@ def test_loads_level_1_by_default():
 
 
 def test_create_message(game):
-    game.create_message(kind="a_kind", title="A title", content="Some content")
+    game.create_message(kind=Kind.GAME, title="A title", content="Some content")
 
     assert game.messages == [
-        Message(kind="a_kind", title="A title", content="Some content")
+        Message(kind=Kind.GAME, title="A title", content="Some content")
     ]
 
 
 def test_pop_messages(game):
-    game.create_message(kind="a_kind", title="A title")
+    game.create_message(kind=Kind.GAME, title="A title")
     assert len(game.messages) == 1
 
     messages = game.pop_messages()
 
     assert game.messages == []
-    assert messages == [Message(kind="a_kind", title="A title", content=None)]
+    assert messages == [Message(kind=Kind.GAME, title="A title")]
 
 
 def test_available_actions(game):
@@ -114,7 +114,9 @@ def test_show_inventory_when_empty(game):
     assert len(game.messages) == 1
     assert game.messages == [
         Message(
-            kind="inventory", title="empty", content="The inventory is empty."
+            kind=Kind.INVENTORY,
+            title="empty",
+            content="The inventory is empty.",
         )
     ]
 
@@ -124,10 +126,7 @@ def test_show_inventory_with_content(game):
 
     game.show_inventory()
 
-    assert len(game.messages) == 1
-    assert game.messages == [
-        Message(kind="inventory", title="Sword", content=None)
-    ]
+    assert Message(kind=Kind.INVENTORY, title="Sword") in game.messages
 
 
 def test_die_when_more_lives_left(game):

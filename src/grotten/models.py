@@ -46,7 +46,7 @@ class Level:
 class Message:
     kind: Kind
     title: str
-    content: Optional[str]
+    content: Optional[str] = None
 
 
 @dataclass
