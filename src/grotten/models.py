@@ -46,7 +46,6 @@ class Message:
 class Tick:
     messages: List[Message] = field(default_factory=list)
     inventory_open: bool = False
-    actions_allowed: bool = True
 
 
 @dataclass
@@ -98,7 +97,6 @@ class Game:
 
     def die(self) -> None:
         self.lives -= 1
-        self.tick.actions_allowed = self.lives > 0
         self.create_message(
             kind=_("life"),
             title=_("You died"),
@@ -107,7 +105,6 @@ class Game:
 
     def restart_level(self) -> None:
         self.location = self.level.start
-        self.tick.actions_allowed = False
         self.create_message(
             kind=_("level"),
             title=_("Restart"),

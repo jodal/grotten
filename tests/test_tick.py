@@ -6,4 +6,3 @@ def test_tick():
 
     assert tick.messages == []
     assert tick.inventory_open is False
-    assert tick.actions_allowed is True

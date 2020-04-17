@@ -21,13 +21,11 @@ def test_begin_tick(game):
     game.create_message(kind="a_kind", title="A title")
     assert len(game.tick.messages) == 1
     game.tick.inventory_open = True
-    game.tick.actions_allowed = False
 
     game.begin_tick()
 
     assert game.tick.messages == []
     assert game.tick.inventory_open is False
-    assert game.tick.actions_allowed is True
 
 
 def test_create_message(game):
@@ -79,7 +77,6 @@ def test_die_when_more_lives_left(game):
     game.die()
 
     assert game.lives == lives_before - 1
-    assert game.tick.actions_allowed is True
     assert len(game.tick.messages) == 1
     assert game.tick.messages[0].title == "You died"
 
@@ -90,7 +87,6 @@ def test_die_when_running_out_of_lives(game):
     game.die()
 
     assert game.lives == 0
-    assert game.tick.actions_allowed is False
     assert len(game.tick.messages) == 1
     assert game.tick.messages[0].title == "You died"
 
@@ -101,7 +97,6 @@ def test_restart_level(game, level_1):
     game.restart_level()
 
     assert game.location == level_1.start
-    assert game.tick.actions_allowed is False
     assert len(game.tick.messages) == 1
     assert game.tick.messages[0].title == "Restart"
 

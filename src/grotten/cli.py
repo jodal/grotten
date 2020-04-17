@@ -36,9 +36,8 @@ def tick(game: Game) -> None:
 
     game.begin_tick()
 
-    if game.tick.actions_allowed:
-        action = select_action(next_actions(game))
-        action.apply(game)
+    action = select_action(next_actions(game))
+    action.apply(game)
 
     if game.tick.inventory_open:
         show_inventory(game.inventory)
