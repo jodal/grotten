@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-17 00:50+0200\n"
+"POT-Creation-Date: 2020-04-17 01:59+0200\n"
 "PO-Revision-Date: 2020-04-16 00:01+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: nb_NO\n"
@@ -94,29 +94,41 @@ msgstr "sørover"
 msgid "West"
 msgstr "vestover"
 
+#: src/grotten/models.py:83 src/grotten/models.py:109
+msgid "action"
+msgstr "handling"
+
 #: src/grotten/models.py:84
+msgid "Going {direction}"
+msgstr "Går {direction}"
+
+#: src/grotten/models.py:91
 msgid "life"
 msgstr "liv"
 
-#: src/grotten/models.py:85 tests/test_game.py:43
+#: src/grotten/models.py:92
 msgid "You died"
 msgstr "Du døde"
 
-#: src/grotten/models.py:86
+#: src/grotten/models.py:93
 msgid "You have {lives} left."
 msgstr "Du har {lives} igjen."
 
-#: src/grotten/models.py:93
+#: src/grotten/models.py:100
 msgid "level"
 msgstr "brett"
 
-#: src/grotten/models.py:94
+#: src/grotten/models.py:101
 msgid "Restart"
 msgstr "Restart"
 
-#: src/grotten/models.py:95
+#: src/grotten/models.py:102
 msgid "You respawn at the beginning."
 msgstr "Du er tilbake på start."
+
+#: src/grotten/models.py:110
+msgid "Picking up {item}"
+msgstr "Plukker opp {item}"
 
 #: src/grotten/levels/level_1.py:16
 msgid "Entrance"
@@ -140,7 +152,7 @@ msgstr "Skjelett"
 
 #: src/grotten/levels/level_1.py:26
 msgid "You stumble upon the skeletons of three humans and a dog."
-msgstr "Du snubler over skjelletene etter tre mennesker og en hund."
+msgstr "Du snubler over skjelettene etter tre mennesker og en hund."
 
 #: src/grotten/levels/level_1.py:27
 msgid "Sword"

@@ -77,6 +77,13 @@ class Game:
         self.tick.messages.append(message)
         return message
 
+    def go(self, direction: Direction) -> None:
+        self.location = self.location.neighbors[direction]
+        self.create_message(
+            kind=_("action"),
+            title=_("Going {direction}").format(direction=_(direction.value)),
+        )
+
     def die(self) -> None:
         self.lives -= 1
         self.tick.actions_allowed = self.lives > 0
@@ -93,6 +100,14 @@ class Game:
             kind=_("level"),
             title=_("Restart"),
             content=_("You respawn at the beginning."),
+        )
+
+    def pick_up(self, item: Item) -> None:
+        self.location.items.remove(item)
+        self.inventory = sorted(self.inventory + [item])
+        self.create_message(
+            kind=_("action"),
+            title=_("Picking up {item}").format(item=item.name),
         )
 
     def show_inventory(self) -> None:

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-17 00:50+0200\n"
+"POT-Creation-Date: 2020-04-17 01:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,28 +93,40 @@ msgstr ""
 msgid "West"
 msgstr ""
 
+#: src/grotten/models.py:83 src/grotten/models.py:109
+msgid "action"
+msgstr ""
+
 #: src/grotten/models.py:84
+msgid "Going {direction}"
+msgstr ""
+
+#: src/grotten/models.py:91
 msgid "life"
 msgstr ""
 
-#: src/grotten/models.py:85 tests/test_game.py:43
+#: src/grotten/models.py:92
 msgid "You died"
 msgstr ""
 
-#: src/grotten/models.py:86
+#: src/grotten/models.py:93
 msgid "You have {lives} left."
 msgstr ""
 
-#: src/grotten/models.py:93
+#: src/grotten/models.py:100
 msgid "level"
 msgstr ""
 
-#: src/grotten/models.py:94
+#: src/grotten/models.py:101
 msgid "Restart"
 msgstr ""
 
-#: src/grotten/models.py:95
+#: src/grotten/models.py:102
 msgid "You respawn at the beginning."
+msgstr ""
+
+#: src/grotten/models.py:110
+msgid "Picking up {item}"
 msgstr ""
 
 #: src/grotten/levels/level_1.py:16

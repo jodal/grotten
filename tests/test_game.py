@@ -1,3 +1,4 @@
+from grotten.enums import Direction
 from grotten.models import Game, Message
 
 
@@ -35,6 +36,28 @@ def test_create_message(game):
     assert game.tick.messages == [
         Message(kind="a_kind", title="A title", content="Some content")
     ]
+
+
+def test_go(game, level_1):
+    assert game.location == level_1.locations["entrance"]
+
+    game.go(Direction.WEST)
+
+    assert game.location == level_1.locations["skeletons"]
+
+
+def test_pick_up(game, level_1):
+    game.location = level_1.locations["skeletons"]
+    item = game.location.items[0]
+
+    assert len(game.location.items) == 1
+    assert len(game.inventory) == 0
+
+    game.pick_up(item)
+
+    assert len(game.location.items) == 0
+    assert len(game.inventory) == 1
+    assert item in game.inventory
 
 
 def test_die_when_more_lives_left(game):

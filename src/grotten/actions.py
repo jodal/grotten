@@ -36,7 +36,7 @@ class Go(Action):
         return _("Go {direction}").format(direction=_(self.direction.value))
 
     def apply(self, game: Game) -> None:
-        game.location = game.location.neighbors[self.direction]
+        game.go(self.direction)
 
 
 @dataclass
@@ -47,9 +47,7 @@ class PickUp(Action):
         return _("Pick up {item}").format(item=self.item.name)
 
     def apply(self, game: Game) -> None:
-        game.location.items.remove(self.item)
-        game.inventory.append(self.item)
-        game.inventory = sorted(game.inventory)
+        game.pick_up(self.item)
 
 
 @dataclass
