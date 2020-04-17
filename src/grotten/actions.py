@@ -2,12 +2,12 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from gettext import gettext as _
-from typing import List, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 from grotten.enums import Direction
 
 if TYPE_CHECKING:
-    from grotten.models import Game, Item
+    from grotten.models import Item
 
 
 @dataclass
