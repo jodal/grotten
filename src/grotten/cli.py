@@ -5,6 +5,7 @@ from typing import List, TYPE_CHECKING
 
 import click
 
+from grotten import __version__
 from grotten.actions import next_actions
 from grotten.models import Game
 
@@ -14,6 +15,7 @@ if TYPE_CHECKING:
 
 
 @click.command()
+@click.version_option(version=__version__)
 def main() -> None:
     game = Game.create()
     game.describe_location()
