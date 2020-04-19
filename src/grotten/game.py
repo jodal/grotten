@@ -8,7 +8,14 @@ from typing import List, Optional
 
 from grotten import actions
 from grotten.enums import Direction, Kind
-from grotten.models import Creature, Item, Inventory, Level, Location, Message
+from grotten.models import (
+    Creature,
+    Item,
+    Inventory,
+    Level,
+    Location,
+    Mailbox,
+)
 from grotten.levels import load_level
 
 
@@ -19,25 +26,13 @@ class Game:
     inventory: Inventory = field(default_factory=Inventory)
     lives: int = 3
     running: bool = True
-    messages: List[Message] = field(default_factory=list)
+    messages: Mailbox = field(default_factory=Mailbox)
 
     @classmethod
     def create(cls, *, level: Optional[Level] = None) -> Game:
         if level is None:
             level = load_level(1)
         return cls(level=level, location=level.start)
-
-    def create_message(
-        self, *, kind: Kind, title: str, content: Optional[str] = None
-    ) -> Message:
-        message = Message(kind=kind, title=title, content=content)
-        self.messages.append(message)
-        return message
-
-    def pop_messages(self) -> List[Message]:
-        messages = self.messages
-        self.messages = []
-        return messages
 
     # --- Actions
 
@@ -73,11 +68,11 @@ class Game:
 
     def end_game(self) -> None:
         self.running = False
-        self.create_message(kind=Kind.GAME, title=_("Welcome back"))
+        self.messages.add(kind=Kind.GAME, title=_("Welcome back"))
 
     def go(self, direction: Direction) -> None:
         self.location = self.location.neighbors[direction]
-        self.create_message(
+        self.messages.add(
             kind=Kind.ACTION,
             title=_("Going {direction}").format(direction=_(direction)),
         )
@@ -88,7 +83,7 @@ class Game:
     def attack(self, creature: Creature) -> Fraction:
         weapon = self.inventory.get_weapon()
         winning_odds = Fraction(weapon.attack_strength, creature.strength)
-        self.create_message(
+        self.messages.add(
             kind=Kind.ACTION,
             title=_("Attack {creature}").format(creature=creature.name),
             content=_(
@@ -105,7 +100,7 @@ class Game:
         won = random.random() < winning_odds
 
         if won:
-            self.create_message(
+            self.messages.add(
                 kind=Kind.ACTION,
                 title=_("You won"),
                 content=_("You defeated {creature}").format(
@@ -114,7 +109,7 @@ class Game:
             )
             # TODO Kill creature
         else:
-            self.create_message(
+            self.messages.add(
                 kind=Kind.ACTION,
                 title=_("You lost"),
                 content=_("You lost the battle with {creature}.").format(
@@ -128,40 +123,40 @@ class Game:
     def pick_up(self, item: Item) -> None:
         self.location.items.remove(item)
         self.inventory.add(item)
-        self.create_message(
+        self.messages.add(
             kind=Kind.ACTION,
             title=_("Picking up {item}").format(item=item.name),
         )
 
     def show_inventory(self) -> None:
         if not self.inventory.items:
-            self.create_message(
+            self.messages.add(
                 kind=Kind.INVENTORY,
                 title=_("empty"),
                 content=_("The inventory is empty."),
             )
 
         for item in self.inventory.items:
-            self.create_message(kind=Kind.INVENTORY, title=item.name)
+            self.messages.add(kind=Kind.INVENTORY, title=item.name)
 
     # --- Action building blocks
 
     def describe_location(self) -> None:
-        self.create_message(
+        self.messages.add(
             kind=Kind.LOCATION,
             title=self.location.name,
             content=self.location.description,
         )
 
         for creature in self.location.creatures:
-            self.create_message(kind=Kind.CREATURE, title=creature.name)
+            self.messages.add(kind=Kind.CREATURE, title=creature.name)
 
         for item in self.location.items:
-            self.create_message(kind=Kind.ITEM, title=item.name)
+            self.messages.add(kind=Kind.ITEM, title=item.name)
 
     def die(self) -> None:
         self.lives -= 1
-        self.create_message(
+        self.messages.add(
             kind=Kind.LIFE,
             title=_("You died"),
             content=ngettext(
@@ -171,11 +166,11 @@ class Game:
             ).format(lives=self.lives),
         )
         if self.lives == 0:
-            self.create_message(kind=Kind.GAME, title=_("Game over"))
+            self.messages.add(kind=Kind.GAME, title=_("Game over"))
 
     def restart_level(self) -> None:
         self.location = self.level.start
-        self.create_message(
+        self.messages.add(
             kind=Kind.LEVEL,
             title=_("Restart"),
             content=_("You respawn at the beginning."),

@@ -22,7 +22,7 @@ def main() -> None:
     try:
         while game.running and game.lives > 0:
             click.clear()
-            show_messages(game.pop_messages())
+            show_messages(game.messages.pop())
             action = select_action(game.available_actions())
             game.apply(action)
     except click.exceptions.Abort:
@@ -30,7 +30,7 @@ def main() -> None:
         click.secho(_("Aborting"), bold=True, fg="yellow")
 
     click.clear()
-    show_messages(game.pop_messages())
+    show_messages(game.messages.pop())
 
 
 def show_messages(messages: List[Message]) -> None:

@@ -13,24 +13,6 @@ def test_loads_level_1_by_default():
     assert game.location == game.level.start
 
 
-def test_create_message(game):
-    game.create_message(kind=Kind.GAME, title="A title", content="Some content")
-
-    assert game.messages == [
-        Message(kind=Kind.GAME, title="A title", content="Some content")
-    ]
-
-
-def test_pop_messages(game):
-    game.create_message(kind=Kind.GAME, title="A title")
-    assert len(game.messages) == 1
-
-    messages = game.pop_messages()
-
-    assert game.messages == []
-    assert messages == [Message(kind=Kind.GAME, title="A title")]
-
-
 def test_available_actions(game):
     result = game.available_actions()
 
@@ -154,13 +136,9 @@ def test_show_inventory_when_empty(game):
     game.show_inventory()
 
     assert len(game.messages) == 1
-    assert game.messages == [
-        Message(
-            kind=Kind.INVENTORY,
-            title="empty",
-            content="The inventory is empty.",
-        )
-    ]
+    assert game.messages[0] == Message(
+        kind=Kind.INVENTORY, title="empty", content="The inventory is empty.",
+    )
 
 
 def test_show_inventory_with_content(game):

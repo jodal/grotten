@@ -46,13 +46,6 @@ class Level:
 
 
 @dataclass
-class Message:
-    kind: Kind
-    title: str
-    content: Optional[str] = None
-
-
-@dataclass
 class Inventory:
     items: List[Item] = field(default_factory=list)
 
@@ -65,3 +58,32 @@ class Inventory:
             if item.attack_strength > best_weapon.attack_strength:
                 best_weapon = item
         return best_weapon
+
+
+@dataclass
+class Message:
+    kind: Kind
+    title: str
+    content: Optional[str] = None
+
+
+@dataclass
+class Mailbox:
+    messages: List[Message] = field(default_factory=list)
+
+    def add(
+        self, *, kind: Kind, title: str, content: Optional[str] = None
+    ) -> Message:
+        message = Message(kind=kind, title=title, content=content)
+        self.messages.append(message)
+        return message
+
+    def pop(self) -> List[Message]:
+        messages, self.messages = self.messages, []
+        return messages
+
+    def __len__(self) -> int:
+        return len(self.messages)
+
+    def __getitem__(self, index: int) -> Message:
+        return self.messages[index]
