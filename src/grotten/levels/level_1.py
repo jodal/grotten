@@ -1,7 +1,13 @@
+from __future__ import annotations
+
 from gettext import gettext as _
+from typing import TYPE_CHECKING
 
 from grotten.enums import Direction
-from grotten.models import Creature, Game, Item, Level, Location
+from grotten.models import Creature, Item, Level, Location
+
+if TYPE_CHECKING:
+    from grotten.game import Game
 
 
 # Effects

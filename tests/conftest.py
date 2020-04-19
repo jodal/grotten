@@ -1,7 +1,7 @@
 import pytest
 
 from grotten.levels import load_level
-from grotten.models import Game
+from grotten.game import Game
 
 
 @pytest.fixture

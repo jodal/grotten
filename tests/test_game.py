@@ -2,7 +2,8 @@ from fractions import Fraction
 
 from grotten import actions
 from grotten.enums import Direction, Kind
-from grotten.models import Game, Item, Message
+from grotten.game import Game
+from grotten.models import Item, Message
 
 
 def test_loads_level_1_by_default():

@@ -6,7 +6,7 @@ from typing import List, TYPE_CHECKING
 import click
 
 from grotten import __version__
-from grotten.models import Game
+from grotten.game import Game
 
 if TYPE_CHECKING:
     from grotten.actions import Action
