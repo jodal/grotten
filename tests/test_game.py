@@ -41,6 +41,22 @@ def test_available_actions(game):
     ]
 
 
+def test_available_actions_with_creature(game, level_1):
+    game.location = level_1.locations["dragon_lair"]
+    assert len(game.location.creatures) == 1
+    creature = game.location.creatures[0]
+
+    result = game.available_actions()
+
+    assert result == [
+        actions.Attack(creature=creature),
+        actions.Go(direction=Direction.NORTH),
+        actions.Go(direction=Direction.SOUTH),
+        actions.ShowInventory(),
+        actions.EndGame(),
+    ]
+
+
 def test_available_actions_with_inventory(game, level_1):
     game.location = level_1.locations["skeletons"]
     assert len(game.location.items) == 1
