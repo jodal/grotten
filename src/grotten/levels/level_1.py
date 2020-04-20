@@ -37,7 +37,13 @@ dragon_lair = Location(
     description=_(
         "There is large green dragon sleeping on the floor in front of you."
     ),
-    creatures=[Creature(name=_("Green Dragon"), strength=12)],
+    creatures=[
+        Creature(
+            name=_("Green Dragon"),
+            strength=12,
+            loot=[Item(name=_("Dragon tooth")), Item(name=_("Dragon tooth"))],
+        )
+    ],
 )
 treasure = Location(
     name=_("Treasure"), description=_("You found the treasure!"),

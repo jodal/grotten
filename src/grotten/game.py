@@ -147,6 +147,7 @@ class Game:
             content=_("You defeated {creature}").format(creature=creature.name),
         )
         self.location.creatures.remove(creature)
+        self.location.items.extend(creature.loot)
 
     def lose_fight(self, creature: Creature) -> None:
         self.messages.add(

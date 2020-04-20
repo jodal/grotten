@@ -14,6 +14,7 @@ if TYPE_CHECKING:
 class Creature:
     name: str
     strength: int = 1
+    loot: List[Item] = field(default_factory=list)
 
 
 @dataclass(order=True)

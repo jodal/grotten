@@ -156,11 +156,16 @@ def test_win_fight(game, level_1):
     game.location = level_1.locations["dragon_lair"]
     game.inventory.add(Item(name="sword", attack_strength=8))
     creature = game.location.creatures[0]
+    assert len(game.location.items) == 0
 
     game.win_fight(creature)
 
     assert game.messages[0].title == "You won"
     assert creature not in game.location.creatures
+    assert game.location.items == [
+        Item(name="Dragon tooth"),
+        Item(name="Dragon tooth"),
+    ]
 
 
 def test_lose_fight(game, level_1):
