@@ -149,6 +149,32 @@ def test_show_inventory_with_content(game):
     assert Message(kind=Kind.INVENTORY, title="Sword") in game.messages
 
 
+# --- Action building blocks
+
+
+def test_win_fight(game, level_1):
+    game.location = level_1.locations["dragon_lair"]
+    game.inventory.add(Item(name="sword", attack_strength=8))
+    creature = game.location.creatures[0]
+
+    game.win_fight(creature)
+
+    assert game.messages[0].title == "You won"
+    assert creature not in game.location.creatures
+
+
+def test_lose_fight(game, level_1):
+    game.location = level_1.locations["dragon_lair"]
+    game.inventory.add(Item(name="sword", attack_strength=8))
+    creature = game.location.creatures[0]
+    lives_before = game.lives
+
+    game.lose_fight(creature)
+
+    assert game.messages[0].title == "You lost"
+    assert game.lives == lives_before - 1
+
+
 def test_die_when_more_lives_left(game):
     lives_before = game.lives
     assert lives_before > 1

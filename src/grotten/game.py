@@ -100,23 +100,9 @@ class Game:
         won = random.random() < winning_odds
 
         if won:
-            self.messages.add(
-                kind=Kind.ACTION,
-                title=_("You won"),
-                content=_("You defeated {creature}").format(
-                    creature=creature.name
-                ),
-            )
-            # TODO Kill creature
+            self.win_fight(creature)
         else:
-            self.messages.add(
-                kind=Kind.ACTION,
-                title=_("You lost"),
-                content=_("You lost the battle with {creature}.").format(
-                    creature=creature.name
-                ),
-            )
-            self.die()
+            self.lose_fight(creature)
 
         return winning_odds
 
@@ -153,6 +139,24 @@ class Game:
 
         for item in self.location.items:
             self.messages.add(kind=Kind.ITEM, title=item.name)
+
+    def win_fight(self, creature: Creature) -> None:
+        self.messages.add(
+            kind=Kind.ACTION,
+            title=_("You won"),
+            content=_("You defeated {creature}").format(creature=creature.name),
+        )
+        self.location.creatures.remove(creature)
+
+    def lose_fight(self, creature: Creature) -> None:
+        self.messages.add(
+            kind=Kind.ACTION,
+            title=_("You lost"),
+            content=_("You lost the battle with {creature}.").format(
+                creature=creature.name
+            ),
+        )
+        self.die()
 
     def die(self) -> None:
         self.lives -= 1
