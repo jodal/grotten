@@ -144,7 +144,9 @@ class Game:
         self.messages.add(
             kind=Kind.ACTION,
             title=_("You won"),
-            content=_("You defeated {creature}").format(creature=creature.name),
+            content=_("You defeated {creature}.").format(
+                creature=creature.name
+            ),
         )
         self.location.creatures.remove(creature)
         self.location.items.extend(creature.loot)

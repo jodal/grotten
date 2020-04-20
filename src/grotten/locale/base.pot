@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-17 11:20+0200\n"
+"POT-Creation-Date: 2020-04-20 21:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Go {direction}"
 msgstr ""
 
-#: src/grotten/actions.py:44 src/grotten/models.py:143
+#: src/grotten/actions.py:44 src/grotten/game.py:88
 msgid "Attack {creature}"
 msgstr ""
 
@@ -97,121 +97,125 @@ msgstr ""
 msgid "location"
 msgstr ""
 
-#: src/grotten/models.py:86
-msgid "Bare Hands"
-msgstr ""
-
-#: src/grotten/models.py:126
+#: src/grotten/game.py:71
 msgid "Welcome back"
 msgstr ""
 
-#: src/grotten/models.py:132
+#: src/grotten/game.py:77
 msgid "Going {direction}"
 msgstr ""
 
-#: src/grotten/models.py:144
+#: src/grotten/game.py:89
 msgid ""
 "You attack {creature} ({creature_strength}) with {weapon} "
 "({weapon_strength})."
 msgstr ""
 
-#: src/grotten/models.py:160
-msgid "You won"
-msgstr ""
-
-#: src/grotten/models.py:161
-msgid "You defeated {creature}"
-msgstr ""
-
-#: src/grotten/models.py:169
-msgid "You lost"
-msgstr ""
-
-#: src/grotten/models.py:170
-msgid "You lost the battle with {creature}."
-msgstr ""
-
-#: src/grotten/models.py:183
+#: src/grotten/game.py:114
 msgid "Picking up {item}"
 msgstr ""
 
-#: src/grotten/models.py:190
+#: src/grotten/game.py:121
 msgid "empty"
 msgstr ""
 
-#: src/grotten/models.py:191
+#: src/grotten/game.py:122
 msgid "The inventory is empty."
 msgstr ""
 
-#: src/grotten/models.py:216
+#: src/grotten/game.py:146
+msgid "You won"
+msgstr ""
+
+#: src/grotten/game.py:147
+msgid "You defeated {creature}."
+msgstr ""
+
+#: src/grotten/game.py:157
+msgid "You lost"
+msgstr ""
+
+#: src/grotten/game.py:158
+msgid "You lost the battle with {creature}."
+msgstr ""
+
+#: src/grotten/game.py:168
 msgid "You died"
 msgstr ""
 
-#: src/grotten/models.py:218
+#: src/grotten/game.py:170
 msgid "You have only {lives} life left."
 msgstr ""
 
-#: src/grotten/models.py:219
+#: src/grotten/game.py:171
 msgid "You have {lives} lives left."
 msgstr ""
 
-#: src/grotten/models.py:224
+#: src/grotten/game.py:176
 msgid "Game over"
 msgstr ""
 
-#: src/grotten/models.py:230
+#: src/grotten/game.py:182
 msgid "Restart"
 msgstr ""
 
-#: src/grotten/models.py:231
+#: src/grotten/game.py:183
 msgid "You respawn at the beginning."
 msgstr ""
 
-#: src/grotten/levels/level_1.py:16
+#: src/grotten/models.py:57
+msgid "Bare Hands"
+msgstr ""
+
+#: src/grotten/levels/level_1.py:22
 msgid "Entrance"
 msgstr ""
 
-#: src/grotten/levels/level_1.py:17
+#: src/grotten/levels/level_1.py:23
 msgid "You find yourself in a dark and scary cave."
 msgstr ""
 
-#: src/grotten/levels/level_1.py:20
+#: src/grotten/levels/level_1.py:26
 msgid "Pit"
 msgstr ""
 
-#: src/grotten/levels/level_1.py:21
+#: src/grotten/levels/level_1.py:27
 msgid "You fell into a deep dark pit."
 msgstr ""
 
-#: src/grotten/levels/level_1.py:25
+#: src/grotten/levels/level_1.py:31
 msgid "Skeletons"
 msgstr ""
 
-#: src/grotten/levels/level_1.py:26
+#: src/grotten/levels/level_1.py:32
 msgid "You stumble upon the skeletons of three humans and a dog."
 msgstr ""
 
-#: src/grotten/levels/level_1.py:27
+#: src/grotten/levels/level_1.py:33
 msgid "Small Sword"
 msgstr ""
 
-#: src/grotten/levels/level_1.py:30
+#: src/grotten/levels/level_1.py:36
 msgid "Dragon lair"
 msgstr ""
 
-#: src/grotten/levels/level_1.py:31
+#: src/grotten/levels/level_1.py:37
 msgid "There is large green dragon sleeping on the floor in front of you."
 msgstr ""
 
-#: src/grotten/levels/level_1.py:34
+#: src/grotten/levels/level_1.py:42
 msgid "Green Dragon"
 msgstr ""
 
-#: src/grotten/levels/level_1.py:37
+#: src/grotten/levels/level_1.py:44
+msgid "Dragon tooth"
+msgstr ""
+
+#: src/grotten/levels/level_1.py:49
 msgid "Treasure"
 msgstr ""
 
-#: src/grotten/levels/level_1.py:37
+#: src/grotten/levels/level_1.py:49
 msgid "You found the treasure!"
 msgstr ""
 
