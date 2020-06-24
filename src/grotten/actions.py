@@ -2,12 +2,18 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from gettext import gettext as _
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Protocol
 
 from grotten.enums import Direction
 
 if TYPE_CHECKING:
+    from grotten.game import Game
     from grotten.models import Creature, Item
+
+
+class Effect(Protocol):
+    def __call__(self, game: Game) -> None:
+        pass
 
 
 @dataclass
@@ -21,6 +27,17 @@ class Action:
     def apply(self, game: Game) -> None:
         raise NotImplementedError
 
+
+@dataclass
+class CustomAction(Action):
+    description: str
+    effect: Effect
+
+    def __str__(self) -> str:
+        return self.description
+
+    def apply(self, game: Game) -> None:
+        self.effect(game)
 
 
 @dataclass
