@@ -24,7 +24,7 @@ def main() -> None:
             click.clear()
             show_messages(game.messages.pop())
             action = select_action(game.available_actions())
-            game.apply(action)
+            action.apply(game)
     except click.exceptions.Abort:
         click.echo()
         click.secho(_("Aborting"), bold=True, fg="yellow")

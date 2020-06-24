@@ -54,18 +54,6 @@ class Game:
 
         return result
 
-    def apply(self, action: actions.Action) -> None:
-        if isinstance(action, actions.EndGame):
-            self.end_game()
-        elif isinstance(action, actions.Go):
-            self.go(action.direction)
-        elif isinstance(action, actions.Attack):
-            self.attack(action.creature)
-        elif isinstance(action, actions.PickUp):
-            self.pick_up(action.item)
-        elif isinstance(action, actions.ShowInventory):
-            self.show_inventory()
-
     def end_game(self) -> None:
         self.running = False
         self.messages.add(kind=Kind.GAME, title=_("Welcome back"))
