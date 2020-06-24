@@ -22,17 +22,6 @@ class Action:
         raise NotImplementedError
 
 
-@dataclass
-class EndGame(Action):
-    def __str__(self) -> str:
-        return _("End game")
-
-    def is_meta_action(self) -> bool:
-        return True
-
-    def apply(self, game: Game) -> None:
-        game.end_game()
-
 
 @dataclass
 class Go(Action):
@@ -67,13 +56,28 @@ class PickUp(Action):
         game.pick_up(self.item)
 
 
-@dataclass
-class ShowInventory(Action):
-    def __str__(self) -> str:
-        return _("Show inventory")
+# --- Meta actions
 
+
+@dataclass
+class MetaAction(Action):
     def is_meta_action(self) -> bool:
         return True
+
+
+@dataclass
+class EndGame(MetaAction):
+    def __str__(self) -> str:
+        return _("End game")
+
+    def apply(self, game: Game) -> None:
+        game.end_game()
+
+
+@dataclass
+class ShowInventory(MetaAction):
+    def __str__(self) -> str:
+        return _("Show inventory")
 
     def apply(self, game: Game) -> None:
         game.show_inventory()
