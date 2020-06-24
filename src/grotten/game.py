@@ -39,6 +39,9 @@ class Game:
     def available_actions(self) -> List[actions.Action]:
         result: List[actions.Action] = []
 
+        for action in self.location.actions:
+            result.append(action)
+
         for creature in self.location.creatures:
             result.append(actions.Attack(creature=creature))
 

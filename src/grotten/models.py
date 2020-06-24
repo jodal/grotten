@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING, Callable, Dict, List, Optional
 from grotten.enums import Direction, Kind
 
 if TYPE_CHECKING:
+    from grotten.actions import Action
     from grotten.game import Game
 
 
@@ -30,6 +31,7 @@ class Location:
     neighbors: Dict[Direction, Location] = field(
         default_factory=dict, repr=False
     )
+    actions: List[Action] = field(default_factory=list, repr=False)
     creatures: List[Creature] = field(default_factory=list, repr=False)
     items: List[Item] = field(default_factory=list, repr=False)
     effect: Optional[Callable[[Game], None]] = field(default=None, repr=False)
