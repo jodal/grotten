@@ -7,6 +7,7 @@ import click
 
 from grotten import __version__
 from grotten.game import Game
+from grotten.levels import load_level
 
 if TYPE_CHECKING:
     from grotten.actions import Action
@@ -14,9 +15,10 @@ if TYPE_CHECKING:
 
 
 @click.command()
+@click.option("-l", "--level", default=1, help="Level to start at.")
 @click.version_option(version=__version__)
-def main() -> None:
-    game = Game.create()
+def main(level: int) -> None:
+    game = Game.create(level=load_level(level))
     game.describe_location()
 
     try:
