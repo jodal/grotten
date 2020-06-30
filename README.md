@@ -4,13 +4,13 @@
 </h1>
 
 <p align="center">
-  <em>Text-based dungeon explorer developed together with an 8-year-old</em>
+  <em>text-based dungeon explorer developed together with an 8-year-old</em>
 </p>
 
 ---
 
 
-# grotten
+## Disclaimer
 
 Grotten is a very basic text-based dungeon explorer. It is probably only
 entertaining to the two core developers.
@@ -30,20 +30,28 @@ entertaining to the two core developers.
 
 1. Clone Git repo and change into the project directory:
 
+    ```
     git clone git@github.com:jodal/grotten.git
     cd grotten
+    ```
 
 2. Install dependencies with [Poetry](https://python-poetry.org/):
 
+    ```
     poetry install
+    ```
 
 3. List available command line options:
 
+    ```
     python -m grotten --help
+    ```
 
 4. Run the game:
 
+    ```
     python -m grotten
+    ```
 
 
 ## Translations
