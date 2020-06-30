@@ -7,8 +7,6 @@
   <em>text-based dungeon explorer developed together with an 8-year-old</em>
 </p>
 
----
-
 
 ## Disclaimer
 
