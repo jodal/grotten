@@ -7,18 +7,43 @@ import click
 
 from grotten import __version__
 from grotten.game import Game
-from grotten.levels import load_level
+from grotten.levels import get_levels, load_level
 
 if TYPE_CHECKING:
     from grotten.actions import Action
     from grotten.models import Message
 
 
-@click.command()
-@click.option("-l", "--level", default=1, help="Level to start at.")
+@click.group()
 @click.version_option(version=__version__)
-def main(level: int) -> None:
-    game = Game.create(level=load_level(level))
+def cli() -> None:
+    pass
+
+
+@cli.command()
+def play() -> None:
+    start_game()
+
+
+@cli.command()
+def levels() -> None:
+    levels = get_levels()
+
+    for level in get_levels():
+        click.secho(f"[{level.number}] ", nl=False, fg="yellow")
+        click.echo(level.name)
+
+    level_number = click.prompt(
+        click.style(_("Select"), fg="blue"),
+        type=click.IntRange(min=1, max=len(levels)),
+    )
+    click.echo()
+
+    start_game(level_number=level_number)
+
+
+def start_game(*, level_number: int = 1) -> None:
+    game = Game.create(level=load_level(level_number))
     game.describe_location()
 
     try:

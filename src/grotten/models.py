@@ -44,6 +44,7 @@ class Location:
 @dataclass
 class Level:
     number: int
+    name: str
     start: Location = field(repr=False)
     locations: Dict[str, Location] = field(default_factory=dict, repr=False)
 

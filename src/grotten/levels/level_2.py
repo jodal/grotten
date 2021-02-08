@@ -76,6 +76,7 @@ bird_cages.connect(Direction.EAST, treasure)
 # Level
 level = Level(
     number=2,
+    name=_("Bird cages"),
     start=bedroom,
     locations={
         "bedroom": bedroom,

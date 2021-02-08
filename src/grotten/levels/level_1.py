@@ -60,6 +60,7 @@ dragon_lair.connect(Direction.NORTH, treasure)
 # Level
 level = Level(
     number=1,
+    name=_("Dragon lair"),
     start=entrance,
     locations={
         "entrance": entrance,
