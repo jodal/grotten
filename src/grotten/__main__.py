@@ -1,3 +1,3 @@
 from grotten import cli
 
-cli.cli()
+cli.app()
