@@ -12,19 +12,36 @@ grotten = "grotten.cli:cli"
 [dependency-groups]
 dev = [
     "babel>=2.8.0",
-    "black~=19.10b0",
-    "flake8>=3.7.9",
     "mypy>=0.770",
     "pytest-cov>=2.8.1",
     "pytest-mypy>=0.6.1",
     "pytest-watch>=4.2.0",
     "pytest>=5.4.1",
+    "ruff>=0.9.6",
 ]
 
 
-[tool.black]
-target-version = ["py38"]
-line-length = 80
+[tool.ruff]
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "D", # pydocstyle
+    #
+    # These rules interfere with `ruff format`
+    "COM812", # missing-trailing-comma
+    "ISC001", # single-line-implicit-string-concatenation
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    "ANN",     # flake8-annotations
+    "ARG001",  # unused-function-argument
+    "D",       # pydocstyle
+    "PLR2004", # magic-value-comparison
+    "S101",    # assert
+]
 
 
 [build-system]
