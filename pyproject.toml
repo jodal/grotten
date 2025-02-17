@@ -1,30 +1,32 @@
-[tool.poetry]
+[project]
 name = "grotten"
 version = "0.1.0"
 description = "Text-based dungeon explorer written together with an 8-year-old"
-authors = ["Stein Magnus Jodal <stein.magnus@jodal.no>"]
+authors = [{ name = "Stein Magnus Jodal", email = "stein.magnus@jodal.no" }]
+requires-python = ">=3.13"
+dependencies = ["click>=7.1.1"]
 
-[tool.poetry.dependencies]
-python = "^3.8"
-click = "^7.1.1"
+[project.scripts]
+grotten = "grotten.cli:cli"
 
-[tool.poetry.dev-dependencies]
-pytest = "^5.4.1"
-black = "^19.10b0"
-flake8 = "^3.7.9"
-mypy = "^0.770"
-pytest-watch = "^4.2.0"
-pytest-mypy = "^0.6.1"
-babel = "^2.8.0"
-pytest-cov = "^2.8.1"
+[dependency-groups]
+dev = [
+    "babel>=2.8.0",
+    "black~=19.10b0",
+    "flake8>=3.7.9",
+    "mypy>=0.770",
+    "pytest-cov>=2.8.1",
+    "pytest-mypy>=0.6.1",
+    "pytest-watch>=4.2.0",
+    "pytest>=5.4.1",
+]
 
-[tool.poetry.scripts]
-grotten = "grotten.cli:main"
 
 [tool.black]
 target-version = ["py38"]
 line-length = 80
 
+
 [build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
