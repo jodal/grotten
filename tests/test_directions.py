@@ -1,4 +1,4 @@
-from grotten.models import Direction
+from grotten.enums import Direction
 
 
 def test_directions_are_ordered_clockwise():

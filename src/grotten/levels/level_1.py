@@ -34,9 +34,7 @@ skeletons = Location(
 )
 dragon_lair = Location(
     name=_("Dragon lair"),
-    description=_(
-        "There is large green dragon sleeping on the floor in front of you."
-    ),
+    description=_("There is large green dragon sleeping on the floor in front of you."),
     creatures=[
         Creature(
             name=_("Green Dragon"),
@@ -46,7 +44,8 @@ dragon_lair = Location(
     ],
 )
 treasure = Location(
-    name=_("Treasure"), description=_("You found the treasure!"),
+    name=_("Treasure"),
+    description=_("You found the treasure!"),
 )
 
 

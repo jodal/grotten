@@ -137,7 +137,9 @@ def test_show_inventory_when_empty(game):
 
     assert len(game.messages) == 1
     assert game.messages[0] == Message(
-        kind=Kind.INVENTORY, title="empty", content="The inventory is empty.",
+        kind=Kind.INVENTORY,
+        title="empty",
+        content="The inventory is empty.",
     )
 
 

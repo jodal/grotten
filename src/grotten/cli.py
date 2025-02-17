@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from gettext import gettext as _
-from typing import List, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 import click
 
@@ -60,7 +60,7 @@ def start_game(*, level_number: int = 1) -> None:
     show_messages(game.messages.pop())
 
 
-def show_messages(messages: List[Message]) -> None:
+def show_messages(messages: list[Message]) -> None:
     for message in messages:
         click.secho(f"[{_(message.kind)}] ", nl=False, fg="magenta")
         click.secho(message.title, bold=True)
@@ -69,14 +69,12 @@ def show_messages(messages: List[Message]) -> None:
         click.echo()
 
 
-def select_action(actions: List[Action]) -> Action:
+def select_action(actions: list[Action]) -> Action:
     click.secho(_("What do you want to do?"), fg="blue")
 
     for i, action in enumerate(actions, 1):
         click.secho(f"[{i}] ", nl=False, fg="yellow")
-        click.secho(
-            str(action), fg="white" if action.is_meta_action() else None
-        )
+        click.secho(str(action), fg="white" if action.is_meta_action() else None)
 
     num = click.prompt(
         click.style(_("Select"), fg="blue"),
@@ -84,5 +82,4 @@ def select_action(actions: List[Action]) -> Action:
     )
     click.echo()
 
-    action = actions[num - 1]
-    return action
+    return actions[num - 1]

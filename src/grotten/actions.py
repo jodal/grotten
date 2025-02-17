@@ -4,9 +4,8 @@ from dataclasses import dataclass
 from gettext import gettext as _
 from typing import TYPE_CHECKING, Protocol
 
-from grotten.enums import Direction
-
 if TYPE_CHECKING:
+    from grotten.enums import Direction
     from grotten.game import Game
     from grotten.models import Creature, Item
 

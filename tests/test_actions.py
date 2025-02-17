@@ -1,7 +1,8 @@
 import pytest
 
 from grotten import actions
-from grotten.models import Creature, Direction, Item
+from grotten.enums import Direction
+from grotten.models import Creature, Item
 
 
 def test_base():

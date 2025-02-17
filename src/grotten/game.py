@@ -3,20 +3,20 @@ from __future__ import annotations
 import random
 from dataclasses import dataclass, field
 from fractions import Fraction
-from gettext import gettext as _, ngettext
-from typing import List, Optional
+from gettext import gettext as _
+from gettext import ngettext
 
 from grotten import actions
 from grotten.enums import Direction, Kind
+from grotten.levels import load_level
 from grotten.models import (
     Creature,
-    Item,
     Inventory,
+    Item,
     Level,
     Location,
     Mailbox,
 )
-from grotten.levels import load_level
 
 
 @dataclass
@@ -29,33 +29,29 @@ class Game:
     messages: Mailbox = field(default_factory=Mailbox)
 
     @classmethod
-    def create(cls, *, level: Optional[Level] = None) -> Game:
+    def create(cls, *, level: Level | None = None) -> Game:
         if level is None:
             level = load_level(1)
         return cls(level=level, location=level.start)
 
     # --- Actions
 
-    def available_actions(self) -> List[actions.Action]:
-        result: List[actions.Action] = []
-
-        for action in self.location.actions:
-            result.append(action)
-
-        for creature in self.location.creatures:
-            result.append(actions.Attack(creature=creature))
-
-        for item in self.location.items:
-            result.append(actions.PickUp(item=item))
-
-        for direction in Direction:
-            if direction in self.location.neighbors:
-                result.append(actions.Go(direction=direction))
-
-        result.append(actions.ShowInventory())
-        result.append(actions.EndGame())
-
-        return result
+    def available_actions(self) -> list[actions.Action]:
+        return [
+            *self.location.actions,
+            *[
+                actions.Attack(creature=creature)
+                for creature in self.location.creatures
+            ],
+            *[actions.PickUp(item=item) for item in self.location.items],
+            *[
+                actions.Go(direction=direction)
+                for direction in Direction
+                if direction in self.location.neighbors
+            ],
+            actions.ShowInventory(),
+            actions.EndGame(),
+        ]
 
     def end_game(self) -> None:
         self.running = False
@@ -88,7 +84,7 @@ class Game:
             ),
         )
 
-        won = random.random() < winning_odds
+        won = random.random() < winning_odds  # noqa: S311
 
         if won:
             self.win_fight(creature)
@@ -135,9 +131,7 @@ class Game:
         self.messages.add(
             kind=Kind.ACTION,
             title=_("You won"),
-            content=_("You defeated {creature}.").format(
-                creature=creature.name
-            ),
+            content=_("You defeated {creature}.").format(creature=creature.name),
         )
         self.location.creatures.remove(creature)
         self.location.items.extend(creature.loot)

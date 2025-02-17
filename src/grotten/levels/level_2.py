@@ -63,7 +63,8 @@ portal = Location(
     ],
 )
 treasure = Location(
-    name=_("Treasure"), description=_("You found the treasure!"),
+    name=_("Treasure"),
+    description=_("You found the treasure!"),
 )
 
 # Connections

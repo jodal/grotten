@@ -1,6 +1,7 @@
 import pytest
 
-from grotten.models import Direction, Location
+from grotten.enums import Direction
+from grotten.models import Location
 
 
 @pytest.fixture
