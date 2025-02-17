@@ -61,7 +61,7 @@ class Game:
         self.location = self.location.neighbors[direction]
         self.messages.add(
             kind=Kind.ACTION,
-            title=_("Going {direction}").format(direction=_(direction)),
+            title=_("Going {direction}").format(direction=_(direction.value)),
         )
         self.describe_location()
         if self.location.effect is not None:
