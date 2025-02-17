@@ -21,6 +21,21 @@ dev = [
 ]
 
 
+[tool.mypy]
+python_version = "3.13"
+warn_unused_configs = true
+
+[[tool.mypy.overrides]]
+module = "grotten.*"
+disallow_untyped_defs = true
+strict_optional = true
+warn_return_any = true
+
+[[tool.mypy.overrides]]
+module = "pytest.*"
+ignore_missing_imports = true
+
+
 [tool.ruff]
 target-version = "py313"
 
