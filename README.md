@@ -7,12 +7,10 @@
   <em>text-based dungeon explorer developed together with an 8-year-old</em>
 </p>
 
-
 ## Disclaimer
 
 Grotten is a very basic text-based dungeon explorer. It is probably only
 entertaining to the two core developers.
-
 
 ## Developers
 
@@ -21,36 +19,34 @@ entertaining to the two core developers.
   Python to the iPad generation.
 
 - **The 8-year-old son**, who is constantly wondering when we're reaching
-  feature parity with *Zelda: Breath of the Wild*.
-
+  feature parity with _Zelda: Breath of the Wild_.
 
 ## Usage
 
 1. Clone Git repo and change into the project directory:
 
-    ```
-    git clone git@github.com:jodal/grotten.git
-    cd grotten
-    ```
+   ```
+   git clone git@github.com:jodal/grotten.git
+   cd grotten
+   ```
 
-2. Install dependencies with [Poetry](https://python-poetry.org/):
+2. Install dependencies with [uv](https://docs.astral.sh/uv/):
 
-    ```
-    poetry install
-    ```
+   ```
+   uv sync
+   ```
 
 3. List available command line options:
 
-    ```
-    python -m grotten --help
-    ```
+   ```
+   uv run grotten --help
+   ```
 
 4. Run the game:
 
-    ```
-    python -m grotten
-    ```
-
+   ```
+   uv run grotten play
+   ```
 
 ## Translations
 
@@ -58,4 +54,4 @@ Translations is somewhat supported through gettext. Specify the `LANG`
 environment variable to change translation. E.g. to change language to
 Norwegian Bokmål:
 
-    LANG=nb python -m grotten
+    LANG=nb uv run grotten
