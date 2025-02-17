@@ -12,7 +12,7 @@ grotten = "grotten.cli:cli"
 [dependency-groups]
 dev = [
     "babel>=2.17.0",
-    "mypy>=1.15.0",
+    "pyright>=1.1.394",
     "pytest>=8.3.4",
     "pytest-cov>=6.0.0",
     "pytest-mypy>=0.10.3",
@@ -21,19 +21,13 @@ dev = [
 ]
 
 
-[tool.mypy]
-python_version = "3.13"
-warn_unused_configs = true
-
-[[tool.mypy.overrides]]
-module = "grotten.*"
-disallow_untyped_defs = true
-strict_optional = true
-warn_return_any = true
-
-[[tool.mypy.overrides]]
-module = "pytest.*"
-ignore_missing_imports = true
+[tool.pyright]
+pythonVersion = "3.13"
+typeCheckingMode = "strict"
+# Already covered by tests and careful import ordering:
+reportImportCycles = false
+# Already covered by flake8-self:
+reportPrivateUsage = false
 
 
 [tool.ruff]

@@ -76,7 +76,7 @@ def select_action(actions: list[Action]) -> Action:
         click.secho(f"[{i}] ", nl=False, fg="yellow")
         click.secho(str(action), fg="white" if action.is_meta_action() else None)
 
-    num = click.prompt(
+    num: int = click.prompt(
         click.style(_("Select"), fg="blue"),
         type=click.IntRange(min=1, max=len(actions)),
     )

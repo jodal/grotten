@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 def get_levels() -> list[Level]:
     level_dir = pathlib.Path(__file__).parent
-    levels = []
+    levels: list[Level] = []
     for level_file in level_dir.glob("level_*.py"):
         level_number = int(level_file.name.replace("level_", "").replace(".py", ""))
         levels.append(load_level(level_number))
